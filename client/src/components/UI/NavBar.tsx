@@ -57,13 +57,13 @@ function NavBar(): JSX.Element {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Grid container fontSize='23px'>
               <Grid item ml='50px'>
-                <Link to="/">Новости</Link>
+                <Link to="/news">Новости</Link>
               </Grid>
               <Grid item ml='70px'>
-                <Link to="/">Пункты сбыта</Link>
+                <Link to="/reception">Пункты сбыта</Link>
               </Grid>
               <Grid item ml='75px'>
-                <Link to="/">Идеи</Link>
+                <Link to="/initiative">Идеи</Link>
               </Grid>
             </Grid>
           </Box>
