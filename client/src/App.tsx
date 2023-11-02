@@ -1,19 +1,18 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import NavBar from './components/UI/NavBar';
-import PrivateCabinetPage from './components/Pages/PrivateCabinetPage';
 
+import ReceptionPointsPage from './components/Pages/ReceptionPointsPage';
+import MainPage from './components/Pages/MainPage';
+import Layout from './components/Layout';
 
-function App(): JSX.Element {
+export default function App(): JSX.Element {
   return (
-      <>
-        <NavBar />
-<Routes>
-    <Route path='/lk' element={<PrivateCabinetPage />}/>
-</Routes>
-        </>
-
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/reception" element={<ReceptionPointsPage />} />
+      </Route>
+    </Routes>
   );
 }
 
-export default App;
