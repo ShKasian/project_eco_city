@@ -5,14 +5,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
-import store from './features/redux/store';
+// import store from './features/redux/store';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <ChakraProvider>
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </ChakraProvider>,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
 );
+
+/* <Provider store={store}></Provider> */
+
+// </Provider>
