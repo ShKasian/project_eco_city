@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
+const userRouter = require('./routes/userRouter');
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -26,6 +28,9 @@ app.use(
     },
   })
 );
+
+app.use('/api/user', userRouter);
+
 
 app.listen(PORT, () => {
   console.log("Server start on port ", PORT);
