@@ -1,16 +1,17 @@
 import React, { useState, ChangeEvent, ChangeEventHandler } from 'react';
 import { Box, Button, TextField } from '@mui/material';
-import { useAppDispatch } from 'src/hooks';
-// import { updateRestaruntThunk } from '../../redux/slices/restarunts/RestaruntsThunk';
+import { updateNewsThunk } from '../../features/redux/thunkActions/newsThunkActions';
 import type { CardNewsType, CardNewsFormType } from '../../types/newsTypes';
+import { useAppDispatch } from '../../features/redux/hooks';
 
 type CardNewsEditFormProps = {
   news: CardNewsType;
   toggleEditing: () => void;
 };
 
-function RestaruntEditForm({ news, toggleEditing }: CardNewsEditFormProps): JSX.Element {
+function NewsEditForm({ news, toggleEditing }: CardNewsEditFormProps): JSX.Element {
   const dispatch = useAppDispatch();
+
   const [formData, setFormData] = useState<CardNewsFormType>({
     image: news.image,
     title: news.title,
@@ -25,15 +26,14 @@ function RestaruntEditForm({ news, toggleEditing }: CardNewsEditFormProps): JSX.
     try {
       await dispatch(updateNewsThunk({ id: news.id, formData }));
       toggleEditing();
-    } catch (error) {
-      // Обработка ошибки
-    }
+    } catch (error) {}
   };
+
   return (
     <Box display="flex" flexDirection="column">
       <TextField
         fullWidth
-        name="title"
+        name="image"
         variant="outlined"
         margin="normal"
         placeholder="Image"
@@ -42,7 +42,7 @@ function RestaruntEditForm({ news, toggleEditing }: CardNewsEditFormProps): JSX.
       />
       <TextField
         fullWidth
-        name="body"
+        name="title"
         variant="outlined"
         margin="normal"
         placeholder="Title"
@@ -51,7 +51,7 @@ function RestaruntEditForm({ news, toggleEditing }: CardNewsEditFormProps): JSX.
       />
       <TextField
         fullWidth
-        name="image"
+        name="body"
         variant="outlined"
         margin="normal"
         placeholder="Body"
@@ -65,4 +65,4 @@ function RestaruntEditForm({ news, toggleEditing }: CardNewsEditFormProps): JSX.
   );
 }
 
-export default RestaruntEditForm;
+export default NewsEditForm;

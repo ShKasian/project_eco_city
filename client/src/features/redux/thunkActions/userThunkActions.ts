@@ -3,8 +3,12 @@ import {
   submitSignupService,
   submitSiginService,
   logoutUserService,
-} from '../../../services/userService'
-import type { UserLoginFormType, UserModelType, UserSignUpFormType } from '../../../types/userTypes';
+} from '../../../services/userService';
+import type {
+  UserLoginFormType,
+  UserModelType,
+  UserSignUpFormType,
+} from '../../../types/userTypes';
 
 // import { setErrAction } from '../slices/ErrSlice';
 

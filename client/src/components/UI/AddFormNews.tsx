@@ -1,7 +1,7 @@
 import { Box, Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import type { CardNewsFormType } from 'src/types/newsTypes';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch } from '../../features/redux/hooks';
 
 export default function AddNewsForm(): JSX.Element {
   const dispatch = useAppDispatch();

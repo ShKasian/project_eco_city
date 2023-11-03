@@ -19,6 +19,7 @@ export default function App(): JSX.Element {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/initiative" element={<InitiativePage />} />
+        <Route path="/initiative/:id" element={<InitiativeComentsPage />} />
         <Route path="/reception" element={<ReceptionPointsPage />} />
         <Route path="/lk" element={<PrivateCabinetPage />} />
 
