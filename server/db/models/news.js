@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   News.init({
-    title: DataTypes.STRING,
+    title: DataTypes.TEXT,
     body: DataTypes.TEXT,
     img: DataTypes.TEXT
   }, {
