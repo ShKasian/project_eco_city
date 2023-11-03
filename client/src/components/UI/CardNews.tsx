@@ -9,7 +9,11 @@ export default function CardNews(): JSX.Element {
   return (
     <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
       <CardActionArea>
-        <CardMedia sx={{ objectFit: 'cover', height: '250px' }} component="img" image="" />
+        <CardMedia
+          sx={{ objectFit: 'cover', height: '250px' }}
+          component="img"
+          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGYxt2zRxv-6yM-BhO8iJ8relHlmQYy2FLZg&usqp=CAU"
+        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             News
