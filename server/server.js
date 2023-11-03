@@ -34,8 +34,6 @@ function generateToken(data) {
   return jwt.sign(data, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
 }
 
-app.use(express.json());
-
 // const authenticateJWT = (req, res, next) => {
 //   const authHeader = req.headers.authorization;
 
