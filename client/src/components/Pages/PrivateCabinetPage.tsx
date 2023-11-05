@@ -52,8 +52,8 @@ export default function PrivateCabinetPage(): JSX.Element {
               fullWidth
               label="Имя пользователя"
               variant="outlined"
-              value={userProfile.username}
-              onChange={(e) => setUserProfile({ ...userProfile, username: e.target.value })}
+              value={userProfile.userName}
+              onChange={(e) => setUserProfile({ ...userProfile, userName: e.target.value })}
             />
           </Grid>
         </Grid>
