@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-
 import ReceptionPointsPage from './components/Pages/ReceptionPointsPage';
 import MainPage from './components/Pages/MainPage';
 import Layout from './components/Layout';

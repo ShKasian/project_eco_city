@@ -12,19 +12,32 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import type { UserSignUpFormType } from '../../types/userTypes'
+import { useAppDispatch } from "../../hooks/reduxHooks"
+import { signUpUserThunk } from '../../features/redux/thunkActions/userThunkActions'
 
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function SignUpPage(): JSX.Element {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const dispatch = useAppDispatch();
+
+  const userSignUpHandler = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+
+    const formData = Object.fromEntries(new FormData(e.currentTarget)) as UserSignUpFormType;
+
+    const dataNew  = {
+      userName: formData.userName,
+      email:  formData.email,
+      password: formData.password
+
+    }
+
+    console.log("***********", formData)
+
+   void dispatch(signUpUserThunk(dataNew)) // сетевой запрос
+    .catch(() => null);
+
   };
 
   return (
@@ -61,14 +74,14 @@ export default function SignUpPage(): JSX.Element {
             <Typography component="h1" variant="h5">
               Регистрация
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" noValidate onSubmit={userSignUpHandler} sx={{ mt: 1 }}>
             <Grid>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="userName"
                   required
                   fullWidth
-                  id="firstName"
+                  id="userName"
                   label="Введите ваше имя"
                   autoFocus
                 />
@@ -79,6 +92,7 @@ export default function SignUpPage(): JSX.Element {
                 fullWidth
                 id="email"
                 label="Введите ваш email"
+                type="text"
                 name="email"
                 autoComplete="email"
                 autoFocus

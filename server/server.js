@@ -1,21 +1,25 @@
+
 require('dotenv').config();
+
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
-const newsRouter = require('./routes/newsRouter');
-// const userRouter = require('./routes/userRouter');
-// const jwt = require('jsonwebtoken');
 
-const PORT = process.env.PORT || 3001;
+const newsRouter = require('./routes/newsRouter');
+// const jwt = require('jsonwebtoken');
+const userRouter = require('./routes/userRouter');
 
 const app = express();
+const PORT = process.env.PORT || 3001;
 
-app.use(cors({ origin: true, credentials: true }));
-app.use(express.json());
+app.use(cors({ credentials: true, origin: true }));
 app.use(morgan('dev'));
+app.use(express.json());
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+
 app.use(
   session({
     name: 'sid',
@@ -31,29 +35,6 @@ app.use(
 );
 
 app.use('/api/news', newsRouter);
-// function generateToken(data) {
-//   return jwt.sign(data, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
-// }
-
-// const authenticateJWT = (req, res, next) => {
-//   const authHeader = req.headers.authorization;
-
-//   if (authHeader) {
-//       const token = authHeader.split(' ')[1];
-
-//       jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-//           if (err) {
-//               return res.sendStatus(403);
-//           }
-
-//           req.user = user;
-//           next();
-//       });
-//   } else {
-//       res.sendStatus(401);
-//   }
-// };
-
-// app.use('/api/user', userRouter);
+app.use('/api', userRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));
