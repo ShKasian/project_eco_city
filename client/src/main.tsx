@@ -6,7 +6,6 @@ import App from './App';
 import './index.css';
 import store from './features/redux/store';
 
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
      <Provider store={store}>
@@ -14,4 +13,3 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     </Provider>
   </BrowserRouter>
 );
-
