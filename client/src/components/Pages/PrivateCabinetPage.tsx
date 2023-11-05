@@ -7,11 +7,11 @@ import {
   TextField,
   Avatar,
   Box,
-  Icon,
-  Stack,
+  Fab,
+  Tooltip,
 } from '@mui/material';
-import { green } from '@mui/material/colors';
-import LoadingButton from '@mui/material/LoadingButton';
+import { AddIcon } from '@chakra-ui/icons';
+// import LoadingButton from '@mui/material/LoadingButton';
 
 type UserProfile = {
   userName: string;
@@ -33,12 +33,14 @@ export default function PrivateCabinetPage(): JSX.Element {
       <Typography color="greenyellow" mt="55px" variant="h4" align="center" gutterBottom>
         Личный кабинет
       </Typography>
+
       
       <Box
         sx={{
           display: 'flex',
         }}
       >
+
         <Grid container spacing={2}>
           <Avatar
             //   alt=""
@@ -46,43 +48,19 @@ export default function PrivateCabinetPage(): JSX.Element {
 
             sx={{ width: 250, height: 250 }}
           />
+
           <Grid item xs={12}>
             <TextField
               margin="normal"
               fullWidth
               label="Имя пользователя"
               variant="outlined"
-              value={userProfile.username}
-              onChange={(e) => setUserProfile({ ...userProfile, username: e.target.value })}
+              value={userProfile.userName}
+              onChange={(e) => setUserProfile({ ...userProfile, userName: e.target.value })}
             />
           </Grid>
         </Grid>
       </Box>
-
-      <Stack direction="row" spacing={3}>
-        <Icon sx={{ color: green[500], fontSize: 32 }} />
-      </Stack>
-
-      <Icon className="fa fa-plus-circle" style={{ color: green[500] }} />
-
-      <Stack direction="row" spacing={2}>
-        <LoadingButton loading variant="outlined">
-          Submit
-        </LoadingButton>
-        <LoadingButton loading loadingIndicator="Loading…" variant="outlined">
-          Fetch data
-        </LoadingButton>
-        <LoadingButton
-          loading
-          loadingPosition="start"
-          startIcon={<SaveIcon />}
-          variant="outlined"
-        >
-          Save
-        </LoadingButton>
-      </Stack>
-
-
 
       <Button
         variant="contained"
@@ -92,6 +70,20 @@ export default function PrivateCabinetPage(): JSX.Element {
       >
         Сохранить профиль
       </Button>
+
+      <Box style={{display:'flex'}} mt='45px'
+      >
+          <Button  aria-multiline>
+          <Tooltip title="Добавить инициативу" aria-label="add">
+        <Fab color="secondary" aria-label="add">
+
+          <AddIcon />
+        </Fab>
+        </Tooltip>
+          </Button>
+      </Box>
+
+     
 
 
     </Container>

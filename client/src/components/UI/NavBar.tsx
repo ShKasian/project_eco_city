@@ -65,6 +65,9 @@ function NavBar(): JSX.Element {
               <Grid item ml='75px'>
                 <Link to="/initiative">Идеи</Link>
               </Grid>
+              <Grid item ml='555px' fontSize='20px'>
+                <Link to="/signup">Регистрация/Авторизация</Link>
+              </Grid>
             </Grid>
           </Box>
 
