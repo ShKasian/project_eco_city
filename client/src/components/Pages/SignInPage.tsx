@@ -12,20 +12,38 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useAppDispatch } from "../../hooks/reduxHooks"
+import { signinUserThunk } from "../../features/redux/thunkActions/userThunkActions"
+import type { UserSigninFormType } from "../../types/userTypes"
 
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
+
 export default function SignInPage(): JSX.Element {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const dispatch = useAppDispatch()
+
+  const userSignInHandler: React.FormEventHandler<HTMLFormElement> = (e): void => {
+    e.preventDefault();
+
+    const formData = Object.fromEntries(new FormData(e.currentTarget)) as UserSigninFormType;
+
+    if (!formData.email || !formData.password) {
+      return;
+    }
+
+   void dispatch(signinUserThunk(formData))
   };
+
+
+
+
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  //   e.preventDefault();
+  //   const data = Object.fromEntries(
+  //     new FormData(e.currentTarget),
+  //   ) as UserSubmitForm;
+  //   dispatch(signInUserActionThunk(data)).catch(() => null);
+  // };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -61,7 +79,7 @@ export default function SignInPage(): JSX.Element {
             <Typography component="h1" variant="h5">
               Вход
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" noValidate onSubmit={userSignInHandler} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required

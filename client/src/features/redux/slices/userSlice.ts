@@ -1,35 +1,66 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { UserStatusType } from 'src/types/userTypes';
+import type { UserType } from '../../../types/userTypes';
+import { signinUserThunk, logoutUserThunk, signUpUserThunk } from '../thunkActions/userThunkActions';
 
-// import {
-//   logoutUserThunk,
-//   submitSigninThunk,
-//   submitSignupThunk,
-// } from '../thunkActions/
+
+type UserSliceType = {
+  data: UserType;
+  error: Error | null;
+  logoutDialogOpened: boolean;
+};
+
+const initialState: UserSliceType = {
+  data: { status: 'loading' },
+  error: null,
+  logoutDialogOpened: false,
+};
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: { status: 'loading' } as UserStatusType,
+  initialState,
   reducers: {},
-
   extraReducers: (builder) => {
-    // builder.addCase(checkUserThunk.pending, () => ({ status: 'loading' }));
-    // builder.addCase(checkUserThunk.fulfilled, (_, action) => ({
-    //   status: 'success',
-    //   user: action.payload,
-    // }));
-    // builder.addCase(checkUserThunk.rejected, () => ({ status: 'guest' }));
-    builder.addCase(submitSignupThunk.fulfilled, (_, action) => ({
-      status: 'success',
-      user: action.payload,
-    }));
+    // checkUserThunk
+    // builder.addCase(checkUserThunk.fulfilled, (state, { payload }) => {
+    //   state.data = {
+    //     ...payload,
+    //     status: 'logged',
+    //   };
+    // });
+    // builder.addCase(checkUserThunk.pending, (state) => {
+    //   state.data = { status: 'loading' };
+    // });
+    // builder.addCase(checkUserThunk.rejected, (state) => {
+    //   state.data = { status: 'guest' };
+    // });
 
-    builder.addCase(submitSigninThunk.fulfilled, (_, action) => ({
-      status: 'success',
-      user: action.payload,
-    }));
+    // signUpUserThunk
+    builder.addCase(signUpUserThunk.fulfilled, (state, { payload }) => {
+      state.data = {
+        ...payload,
+        status: 'logged',
+      };
+    });
+    builder.addCase(signUpUserThunk.rejected, (state) => {
+      state.data = { status: 'guest' };
+    });
 
-    builder.addCase(logoutUserThunk.fulfilled, () => ({ status: 'guest' }));
+    // loginUserThunk
+    builder.addCase(signinUserThunk.fulfilled, (state, { payload }) => {
+      state.data = {
+        ...payload,
+        status: 'logged',
+      };
+    });
+    builder.addCase(signinUserThunk.rejected, (state) => {
+      state.data = { status: 'guest' };
+    });
+
+    // logoutUserThunk
+    builder.addCase(logoutUserThunk.fulfilled, (state) => {
+      state.data = { status: 'guest' };
+    });
+    builder.addCase(logoutUserThunk.rejected, (state) => state);
   },
 });
 

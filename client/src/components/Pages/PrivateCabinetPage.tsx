@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Container, Typography, Button, Grid, TextField, Avatar } from '@mui/material';
 
 type UserProfile = {
-  username: string;
+  userName: string;
   // Другие данные о пользователе
 };
 
 export default function PrivateCabinetPage(): JSX.Element {
   const [userProfile, setUserProfile] = React.useState<UserProfile>({
-    username: '',
+    userName: '',
     // Инициализируйте другие данные о пользователе
   });
 
@@ -34,8 +34,8 @@ export default function PrivateCabinetPage(): JSX.Element {
             fullWidth
             label="Имя пользователя"
             variant="outlined"
-            value={userProfile.username}
-            onChange={(e) => setUserProfile({ ...userProfile, username: e.target.value })}
+            value={userProfile.userName}
+            onChange={(e) => setUserProfile({ ...userProfile, userName: e.target.value })}
           />
         </Grid>
       </Grid>
