@@ -14,13 +14,13 @@ import { green } from '@mui/material/colors';
 import LoadingButton from '@mui/material/LoadingButton';
 
 type UserProfile = {
-  username: string;
+  userName: string;
   // Другие данные о пользователе
 };
 
 export default function PrivateCabinetPage(): JSX.Element {
   const [userProfile, setUserProfile] = React.useState<UserProfile>({
-    username: '',
+    userName: '',
     // Инициализируйте другие данные о пользователе
   });
 
@@ -33,6 +33,7 @@ export default function PrivateCabinetPage(): JSX.Element {
       <Typography color="greenyellow" mt="55px" variant="h4" align="center" gutterBottom>
         Личный кабинет
       </Typography>
+      
       <Box
         sx={{
           display: 'flex',

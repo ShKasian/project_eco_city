@@ -1,13 +1,13 @@
 export type UserModelType = {
   id: number;
-  username: string;
+  userName: string;
   email: string;
 };
 
-export type UserSignUpFormType = Omit<UserModelType, 'id'> & { password: string }; 
-export type UserLoginFormType = Omit<UserSignUpFormType, 'username'>; 
+export type UserSignUpFormType = Omit<UserModelType, 'id'> & { password: string };
+export type UserSigninFormType = Omit<UserSignUpFormType, 'userName'>;
 
-export type UserStatusType =
-  | (UserModelType & { status: 'success' })
+export type UserType =
+  | (UserModelType & { status: 'logged' })
   | { status: 'loading' }
   | { status: 'guest' };
