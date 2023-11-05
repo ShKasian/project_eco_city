@@ -1,5 +1,17 @@
 import * as React from 'react';
-import { Container, Typography, Button, Grid, TextField, Avatar } from '@mui/material';
+import {
+  Container,
+  Typography,
+  Button,
+  Grid,
+  TextField,
+  Avatar,
+  Box,
+  Icon,
+  Stack,
+} from '@mui/material';
+import { green } from '@mui/material/colors';
+import LoadingButton from '@mui/material/LoadingButton';
 
 type UserProfile = {
   userName: string;
@@ -17,28 +29,61 @@ export default function PrivateCabinetPage(): JSX.Element {
   };
 
   return (
-      <Container  maxWidth="md" >
-      <Typography color='greenyellow' mt='55px' variant="h4" align="center" gutterBottom>
+    <Container maxWidth="md">
+      <Typography color="greenyellow" mt="55px" variant="h4" align="center" gutterBottom>
         Личный кабинет
       </Typography>
-    <Avatar
-//   alt=""
-//   src=""
+      
+      <Box
+        sx={{
+          display: 'flex',
+        }}
+      >
+        <Grid container spacing={2}>
+          <Avatar
+            //   alt=""
+            //   src=""
 
-  sx={{ width: 250, height: 250 }}
-/>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <TextField
-          margin='normal'
-            fullWidth
-            label="Имя пользователя"
-            variant="outlined"
-            value={userProfile.userName}
-            onChange={(e) => setUserProfile({ ...userProfile, userName: e.target.value })}
+            sx={{ width: 250, height: 250 }}
           />
+          <Grid item xs={12}>
+            <TextField
+              margin="normal"
+              fullWidth
+              label="Имя пользователя"
+              variant="outlined"
+              value={userProfile.username}
+              onChange={(e) => setUserProfile({ ...userProfile, username: e.target.value })}
+            />
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
+
+      <Stack direction="row" spacing={3}>
+        <Icon sx={{ color: green[500], fontSize: 32 }} />
+      </Stack>
+
+      <Icon className="fa fa-plus-circle" style={{ color: green[500] }} />
+
+      <Stack direction="row" spacing={2}>
+        <LoadingButton loading variant="outlined">
+          Submit
+        </LoadingButton>
+        <LoadingButton loading loadingIndicator="Loading…" variant="outlined">
+          Fetch data
+        </LoadingButton>
+        <LoadingButton
+          loading
+          loadingPosition="start"
+          startIcon={<SaveIcon />}
+          variant="outlined"
+        >
+          Save
+        </LoadingButton>
+      </Stack>
+
+
+
       <Button
         variant="contained"
         color="primary"
@@ -47,6 +92,8 @@ export default function PrivateCabinetPage(): JSX.Element {
       >
         Сохранить профиль
       </Button>
+
+
     </Container>
   );
 }
