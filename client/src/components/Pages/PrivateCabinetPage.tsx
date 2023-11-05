@@ -11,7 +11,6 @@ import {
   Stack,
 } from '@mui/material';
 import { green } from '@mui/material/colors';
-import LoadingButton from '@mui/material/LoadingButton';
 
 type UserProfile = {
   username: string;
@@ -71,17 +70,10 @@ export default function PrivateCabinetPage(): JSX.Element {
         <LoadingButton loading loadingIndicator="Loading…" variant="outlined">
           Fetch data
         </LoadingButton>
-        <LoadingButton
-          loading
-          loadingPosition="start"
-          startIcon={<SaveIcon />}
-          variant="outlined"
-        >
+        <LoadingButton loading loadingPosition="start" startIcon={<SaveIcon />} variant="outlined">
           Save
         </LoadingButton>
       </Stack>
-
-
 
       <Button
         variant="contained"
@@ -91,8 +83,6 @@ export default function PrivateCabinetPage(): JSX.Element {
       >
         Сохранить профиль
       </Button>
-
-
     </Container>
   );
 }

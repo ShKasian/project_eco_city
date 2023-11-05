@@ -1,38 +1,39 @@
-require("dotenv").config();
-const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
-const session = require("express-session");
-const FileStore = require("session-file-store")(session);
-const userRouter = require('./routes/userRouter');
-const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+const newsRouter = require('./routes/newsRouter');
+// const userRouter = require('./routes/userRouter');
+// const jwt = require('jsonwebtoken');
 
-
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
-app.use(morgan("dev"));
-app.use(express.static("public"));
-// app.use(
-//   session({
-//     name: "sid",
-//     secret: process.env.SESSION_SECRET ?? "test",
-//     resave: true,
-//     store: new FileStore(),
-//     saveUninitialized: false,
-//     cookie: {
-//       maxAge: 1000 * 60 * 60 * 12,
-//       httpOnly: true,
-//     },
-//   })
-// );
+app.use(morgan('dev'));
+app.use(express.static('public'));
+app.use(
+  session({
+    name: 'sid',
+    secret: process.env.SESSION_SECRET ?? 'test',
+    resave: true,
+    store: new FileStore(),
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 12,
+      httpOnly: true,
+    },
+  }),
+);
 
-function generateToken(data) {
-  return jwt.sign(data, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
-}
+app.use('/api/news', newsRouter);
+// function generateToken(data) {
+//   return jwt.sign(data, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
+// }
 
 // const authenticateJWT = (req, res, next) => {
 //   const authHeader = req.headers.authorization;
@@ -53,10 +54,6 @@ function generateToken(data) {
 //   }
 // };
 
+// app.use('/api/user', userRouter);
 
-app.use('/api/user', userRouter);
-
-
-app.listen(PORT, () => {
-  console.log("Server start on port ", PORT);
-});
+app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

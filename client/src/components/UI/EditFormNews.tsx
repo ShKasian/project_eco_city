@@ -13,7 +13,7 @@ function NewsEditForm({ news, toggleEditing }: CardNewsEditFormProps): JSX.Eleme
   const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState<CardNewsFormType>({
-    image: news.image,
+    image: news.img,
     title: news.title,
     body: news.body,
   });
@@ -33,11 +33,11 @@ function NewsEditForm({ news, toggleEditing }: CardNewsEditFormProps): JSX.Eleme
     <Box display="flex" flexDirection="column">
       <TextField
         fullWidth
-        name="image"
+        name="img"
         variant="outlined"
         margin="normal"
-        placeholder="Image"
-        value={formData.title}
+        placeholder="Img"
+        value={formData.img}
         onChange={handleInputChange}
       />
       <TextField
@@ -46,7 +46,7 @@ function NewsEditForm({ news, toggleEditing }: CardNewsEditFormProps): JSX.Eleme
         variant="outlined"
         margin="normal"
         placeholder="Title"
-        value={formData.body}
+        value={formData.title}
         onChange={handleInputChange}
       />
       <TextField
@@ -55,7 +55,7 @@ function NewsEditForm({ news, toggleEditing }: CardNewsEditFormProps): JSX.Eleme
         variant="outlined"
         margin="normal"
         placeholder="Body"
-        value={formData.image}
+        value={formData.body}
         onChange={handleInputChange}
       />
       <Button variant="outlined" size="large" onClick={() => handleSubmit}>

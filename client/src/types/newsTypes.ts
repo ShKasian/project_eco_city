@@ -1,6 +1,6 @@
 export type CardNewsType = {
   id: number;
-  image: string;
+  img: string;
   title: string;
   body: string;
 };

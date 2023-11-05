@@ -4,7 +4,7 @@ import {
   updateNews,
   getNews,
   submitNews,
-} from '../../../services/newsSrvices';
+} from '../../../services/newsService';
 import type { CardNewsFormType, CardNewsType } from '../../../types/newsTypes';
 
 export const getNewsThunk = createAsyncThunk<CardNewsType[]>('news/getNewsThunk', async () =>

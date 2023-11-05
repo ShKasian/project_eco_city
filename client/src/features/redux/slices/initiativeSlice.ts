@@ -5,7 +5,7 @@ import {
   updateInitiativeThunk,
   deleteInitiativeThunk,
   getInitiativeThunk,
-} from '../thunkActions/initiativeThunk';
+} from '../thunkActions/initiativeThunkActions';
 
 type NewsState = CardInitiativeType[];
 const initialState: NewsState = [];

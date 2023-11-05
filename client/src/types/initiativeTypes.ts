@@ -1,6 +1,6 @@
 export type CardInitiativeType = {
   id: number;
-  image: string;
+  img: string;
   title: string;
   body: string;
 };

@@ -4,7 +4,7 @@ import {
   updateInitiative,
   getInitiative,
   submitInitiative,
-} from '../../../services/initiativeServices';
+} from '../../../services/initiativeService';
 import type { CardInitiativeFormType, CardInitiativeType } from '../../../types/initiativeTypes';
 
 export const getInitiativeThunk = createAsyncThunk<CardInitiativeType[]>(
