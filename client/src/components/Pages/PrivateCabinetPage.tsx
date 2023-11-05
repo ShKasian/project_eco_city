@@ -34,7 +34,13 @@ export default function PrivateCabinetPage(): JSX.Element {
         Личный кабинет
       </Typography>
 
-      <Box sx={{ '& > :not(style)': { m: 1 } }}>
+      
+      <Box
+        sx={{
+          display: 'flex',
+        }}
+      >
+
         <Grid container spacing={2}>
           <Avatar
             //   alt=""
