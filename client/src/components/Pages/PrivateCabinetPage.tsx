@@ -65,6 +65,7 @@ export default function PrivateCabinetPage(): JSX.Element {
         </Grid>
       </Box>
 
+      
       <Button
         variant="contained"
         color="primary"
