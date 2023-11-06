@@ -27,7 +27,7 @@ export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
       </CardActionArea>
       <CardActions>
         <Typography variant="body2" color="text.secondary">
-          Date
+          {news.createdAt}
         </Typography>
       </CardActions>
     </Card>

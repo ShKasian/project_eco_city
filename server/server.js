@@ -5,6 +5,8 @@ const cors = require('cors');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const newsRouter = require('./routes/newsRouter');
+const initiativeRouter = require('./routes/initiativeRouter');
+
 // const userRouter = require('./routes/userRouter');
 // const jwt = require('jsonwebtoken');
 
@@ -31,6 +33,8 @@ app.use(
 );
 
 app.use('/api/news', newsRouter);
+app.use('/api/initiative', initiativeRouter);
+
 // function generateToken(data) {
 //   return jwt.sign(data, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
 // }
