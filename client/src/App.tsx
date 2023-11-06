@@ -21,7 +21,9 @@ export default function App(): JSX.Element {
         <Route path="/initiative" element={<InitiativePage />} />
         {/* <Route path="/initiative/:id" element={<InitiativeComentsPage />} /> */}
         <Route path="/reception" element={<ReceptionPointsPage />} />
-        {/* <Route path="/lk" element={<PrivateCabinetPage />} /> */}
+
+        <Route path="/lk/:id" element={<PrivateCabinetPage />} />
+
       </Route>
     </Routes>
   );

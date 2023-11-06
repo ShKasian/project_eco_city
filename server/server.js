@@ -6,6 +6,9 @@ const morgan = require('morgan');
 const cors = require('cors');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+const userRouter = require('./routes/userRouter');
+const PrivateCabinetRouter = require('./routes/PrivateCabinetRouter');
+
 
 const newsRouter = require('./routes/newsRouter');
 // const jwt = require('jsonwebtoken');
@@ -34,6 +37,7 @@ app.use(
   }),
 );
 
+app.use('/api/lk', PrivateCabinetRouter);
 app.use('/api/user', userRouter);
 app.use('/api/news', newsRouter);
 
