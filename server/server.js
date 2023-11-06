@@ -1,3 +1,6 @@
+
+require('dotenv').config();
+
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -6,7 +9,10 @@ const FileStore = require('session-file-store')(session);
 const userRouter = require('./routes/userRouter');
 const PrivateCabinetRouter = require('./routes/PrivateCabinetRouter');
 
-require('dotenv').config();
+
+const newsRouter = require('./routes/newsRouter');
+// const jwt = require('jsonwebtoken');
+const userRouter = require('./routes/userRouter');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -14,7 +20,9 @@ const PORT = process.env.PORT || 3001;
 app.use(cors({ credentials: true, origin: true }));
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
+
 app.use(
   session({
     name: 'sid',
@@ -29,10 +37,9 @@ app.use(
   }),
 );
 
-app.use('/api', userRouter);
 app.use('/api/lk', PrivateCabinetRouter);
-
+app.use('/api/user', userRouter);
+app.use('/api/news', newsRouter);
 
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));
-

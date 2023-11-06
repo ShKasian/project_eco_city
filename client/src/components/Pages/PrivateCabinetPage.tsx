@@ -10,8 +10,10 @@ import {
   Fab,
   Tooltip,
 } from '@mui/material';
+
 import AddIcon from '@mui/icons-material/Add';
 import type { UserPrivateCabinetFormType } from '../../types/userTypes';
+
 
 type UserProfile = {
   userName: UserPrivateCabinetFormType;
@@ -65,7 +67,6 @@ export default function PrivateCabinetPage(): JSX.Element {
         </Grid>
       </Box>
 
-      
       <Button
         variant="contained"
         color="primary"
@@ -74,8 +75,10 @@ export default function PrivateCabinetPage(): JSX.Element {
       >
         Сохранить профиль
       </Button>
+
       <Box style={{ display: 'flex' }} mt="45px">
         <Button aria-multiline>
+
           <Tooltip title="Добавить инициативу" aria-label="add">
             <Fab color="secondary" aria-label="add">
               <AddIcon />

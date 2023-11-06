@@ -3,16 +3,15 @@ import React, { useEffect } from 'react';
 import { Grid } from '@mui/material';
 import CardNews from '../UI/CardNews';
 import CardNewsList from '../UI/CardNewsList';
+import { useAppDispatch } from '../../features/redux/hooks';
+import { getNewsThunk } from '../../features/redux/thunkActions/newsThunkActions';
 
 export default function NewsPage(): JSX.Element {
-  return (
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
-        <CardNews />
-      </Grid>
-      <Grid item xs={6}>
-        <CardNewsList />
-      </Grid>
-    </Grid>
-  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    void dispatch(getNewsThunk());
+  }, []);
+
+  return <CardNewsList />;
 }

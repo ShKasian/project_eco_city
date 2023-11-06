@@ -1,22 +1,27 @@
+/* eslint-disable import/newline-after-import */
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
+import type { CardNewsFormType, CardNewsType } from 'src/types/newsTypes';
 
-export default function CardNews(): JSX.Element {
+export type CardNewsPropsType = {
+  news: CardNewsType;
+};
+
+export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
   return (
     <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
       <CardActionArea>
-        <CardMedia sx={{ objectFit: 'cover', height: '250px' }} component="img" image="" />
+        <CardMedia sx={{ objectFit: 'cover', height: '250px' }} component="img" image={news.img} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            News
+            {news.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            {news.body}
           </Typography>
         </CardContent>
       </CardActionArea>
