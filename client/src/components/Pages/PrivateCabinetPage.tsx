@@ -51,6 +51,7 @@ export default function PrivateCabinetPage(): JSX.Element {
               //   alt=""
               // src={`http://localhost:3001/img/${userProfile.userName}`}
               sx={{ width: 250, height: 250 }}
+              
             />
           </Button>
 
