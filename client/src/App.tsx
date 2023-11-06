@@ -8,6 +8,7 @@ import SignInPage from './components/Pages/SignInPage';
 import NewsPage from './components/Pages/NewsPage';
 import InitiativePage from './components/Pages/InitiativePage ';
 import PrivateCabinetPage from './components/Pages/PrivateCabinetPage';
+// import InitiativeComentsPage from './components/Pages/InitiativeComentsPage';
 
 export default function App(): JSX.Element {
   return (
@@ -18,8 +19,10 @@ export default function App(): JSX.Element {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/initiative" element={<InitiativePage />} />
+        {/* <Route path="/initiative/:id" element={<InitiativeComentsPage />} /> */}
         <Route path="/reception" element={<ReceptionPointsPage />} />
-        <Route path="/lk" element={<PrivateCabinetPage />} />
+
+        <Route path="/lk/:id" element={<PrivateCabinetPage />} />
 
       </Route>
     </Routes>

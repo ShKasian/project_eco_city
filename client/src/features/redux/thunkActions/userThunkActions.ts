@@ -1,3 +1,4 @@
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { submitSiginService, submitSignupService } from "../../../services/userService"
@@ -7,9 +8,11 @@ import type {
   UserSignUpFormType,
 } from '../../../types/userTypes';
 
+
 // export const checkUserThunk = createAsyncThunk<UserModelType>('/checkUser', () => {
   
 // });
+
 
 export const signUpUserThunk = createAsyncThunk<UserModelType, UserSignUpFormType>(
   'user/signup',
@@ -22,3 +25,4 @@ export const signinUserThunk = createAsyncThunk<UserModelType, UserSigninFormTyp
 );
 
 export const logoutUserThunk = createAsyncThunk('/logout', async () => axios('/logout'));
+
