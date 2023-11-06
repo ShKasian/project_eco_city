@@ -7,12 +7,12 @@ export const checkUserService = async (): Promise<UserModelType> => {
 };
 
 export const submitSignupService = async (formData: UserSignUpFormType): Promise<UserModelType> => {
-const { data } = await apiService.post<UserModelType>('/signup', formData);
+const { data } = await apiService.post<UserModelType>('/user/signup', formData);
 return data;
 };
 
 export const submitSiginService = async (formData: UserSigninFormType): Promise<UserModelType> => {
-const { data } = await apiService.post<UserModelType>('/signin', formData);
+const { data } = await apiService.post<UserModelType>('/user/signin', formData);
 return data;
 };
 
