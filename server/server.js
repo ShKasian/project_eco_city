@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 
 const express = require('express');
@@ -6,11 +5,12 @@ const morgan = require('morgan');
 const cors = require('cors');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+const newsRouter = require('./routes/newsRouter');
+const initiativeRouter = require('./routes/initiativeRouter');
 const userRouter = require('./routes/userRouter');
 const categoryRouter = require('./routes/categoryRouter');
 const factoryRouter = require('./routes/factoryRouter');
 const PrivateCabinetRouter = require('./routes/PrivateCabinetRouter');
-const newsRouter = require('./routes/newsRouter');
 
 
 const app = express();
@@ -43,7 +43,7 @@ app.use('/api/factory', factoryRouter);
 app.use('/api/lk', PrivateCabinetRouter);
 app.use('/api/user', userRouter);
 app.use('/api/news', newsRouter);
-
+app.use('/api/initiative', initiativeRouter);
 
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

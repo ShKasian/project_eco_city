@@ -6,7 +6,8 @@ const router = express.Router();
 router
   .route('/')
   .get(async (req, res) => {
-    const Initiatives = await Initiative.findAll();
+    const initiatives = await Initiative.findAll();
+    console.log(initiatives, '---------------------');
     res.json(initiatives);
   })
   .post(async (req, res) => {

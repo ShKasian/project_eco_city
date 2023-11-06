@@ -8,9 +8,9 @@ export default function CardNewsList(): JSX.Element {
   const news = useAppSelector((store) => store.news);
   const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   void dispatch(getNewsThunk());
-  // }, []);
+  useEffect(() => {
+    void dispatch(getNewsThunk());
+  }, []);
   return (
     <Box display="flex" flexWrap="wrap">
       {news.map((newss) => (
