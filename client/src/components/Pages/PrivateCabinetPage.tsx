@@ -10,8 +10,10 @@ import {
   Fab,
   Tooltip,
 } from '@mui/material';
+
 import { AddIcon } from '@chakra-ui/icons';
 // import LoadingButton from '@mui/material/LoadingButton';
+
 
 type UserProfile = {
   userName: string;
@@ -62,6 +64,7 @@ export default function PrivateCabinetPage(): JSX.Element {
         </Grid>
       </Box>
 
+
       <Button
         variant="contained"
         color="primary"
@@ -70,6 +73,7 @@ export default function PrivateCabinetPage(): JSX.Element {
       >
         Сохранить профиль
       </Button>
+
 
       <Box style={{display:'flex'}} mt='45px'
       >
