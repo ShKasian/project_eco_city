@@ -113,13 +113,8 @@ export default function SignInPage(): JSX.Element {
                 Войти
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Забыли пароль?
-                  </Link>
-                </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/signup" variant="body2">
                     Нет аккаунта? Зарегистрироваться
                   </Link>
                 </Grid>
