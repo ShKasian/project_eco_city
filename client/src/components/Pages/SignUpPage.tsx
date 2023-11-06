@@ -120,13 +120,8 @@ export default function SignUpPage(): JSX.Element {
                 Продолжить
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                  Забыли пароль?
-                  </Link>
-                </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/signin" variant="body2">
                   Уже есть аккаунт? Войти
                   </Link>
                 </Grid>

@@ -7,8 +7,6 @@ const userRouter = express.Router();
 userRouter.post('/signup', async (req, res) => {
   const { userName, email, password } = req.body;
 
-  console.log(req.body);
-  console.log(req.body);
   if (userName && email && password) {
     try {
       console.log('iuytr');

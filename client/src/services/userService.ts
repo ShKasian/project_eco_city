@@ -12,6 +12,7 @@ export const checkUserService = async (): Promise<UserModelType> => {
 };
 
 export const submitSignupService = async (formData: UserSignUpFormType): Promise<UserModelType> => {
+
   const { data } = await apiService.post<UserModelType>('/signup', formData);
   return data;
 };
@@ -31,6 +32,7 @@ export const submitPrivateCabinet = async (
 ): Promise<UserModelType> => {
   const { data } = await apiService.post<UserModelType>(`/lk/${id}`, formData);
   return data;
+
 };
 
 export const logoutUserService = (): Promise<void> => apiService('/logout');
