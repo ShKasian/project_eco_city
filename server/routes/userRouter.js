@@ -9,10 +9,9 @@ userRouter.post('/signup', async (req, res) => {
 
   if (userName && email && password) {
     try {
-      console.log('iuytr');
       const [user, created] = await User.findOrCreate({
         where: { email },
-        defaults: { userName, password: await bcrypt.hash(password, 10) },
+        defaults: { userName, password: await bcrypt.hash(password, 10), isAdmin: user.isAdmin },
       });
       if (!created) return res.status(401).json({ message: 'User already exists' });
 
@@ -27,30 +26,6 @@ userRouter.post('/signup', async (req, res) => {
   }
   return res.sendStatus(502);
 });
-
-// userRouter.post('/signup', async (req, res) => {
-//   const { userName, email, password } = req.body;
-//   console.log("===========", req.body);
-
-//   if (userName && email && password) {
-//     try {
-//       const [user, created] = await User.findOrCreate({
-//         where: { email },
-//         defaults: { userName, password: await bcrypt.hash(password, 10) },
-//       });
-//       if (!created) return res.Status(401);
-
-//       const sessionUser = JSON.parse(JSON.stringify(user));
-//       delete sessionUser.password;
-//       req.session.user = sessionUser;
-//       return res.json(sessionUser);
-//     } catch (e) {
-//       console.log(e);
-//       return res.sendStatus(500);
-//     }
-//   }
-//   return res.sendStatus(500);
-// });
 
 userRouter.post('/signin', async (req, res) => {
   const { email, password } = req.body;

@@ -35,4 +35,4 @@ export const submitPrivateCabinetService = async (
 
 };
 
-export const logoutUserService = (): Promise<void> => apiService('/logout');
+export const logoutUserService = (): Promise<void> => apiService('/user/logout');

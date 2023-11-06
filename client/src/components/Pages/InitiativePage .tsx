@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
-import Box from '@mui/material/Box';
 import { Grid } from '@mui/material';
 import CardInitiative from '../UI/CardInitiative';
 import CardInitiativeList from '../UI/CardInitiativeList';
+import { getInitiativeThunk } from '../../features/redux/thunkActions/initiativeThunkActions';
+import { useAppDispatch } from '../../features/redux/hooks';
 
 export default function InitiativePage(): JSX.Element {
-  return (
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
-        <CardInitiative />
-      </Grid>
-      <Grid item xs={6}>
-        <CardInitiativeList />
-      </Grid>
-    </Grid>
-  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    void dispatch(getInitiativeThunk());
+  }, []);
+
+  return <CardInitiativeList />;
 }

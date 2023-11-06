@@ -17,7 +17,7 @@ export const newsSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(getInitiativeThunk.fulfilled, (state, action) => action.payload);
-    builder.addCase(getInitiativeThunk.fulfilled, (state, action) => []);
+    builder.addCase(getInitiativeThunk.rejected, (state, action) => []);
 
     builder.addCase(addInitiativeThunk.fulfilled, (state, action) => [action.payload, ...state]);
     builder.addCase(addInitiativeThunk.rejected, (state, action) => state);
@@ -27,7 +27,7 @@ export const newsSlice = createSlice({
         initiative.id === action.payload.id ? action.payload : initiative,
       ),
     );
-    builder.addCase(updateInitiativeThunk.fulfilled, (state, action) => state);
+    builder.addCase(updateInitiativeThunk.rejected, (state, action) => state);
 
     builder.addCase(deleteInitiativeThunk.fulfilled, (state, action) =>
       state.filter((el) => el.id !== action.payload),
@@ -35,3 +35,5 @@ export const newsSlice = createSlice({
     builder.addCase(deleteInitiativeThunk.rejected, (state, action) => state);
   },
 });
+
+export default newsSlice.reducer;

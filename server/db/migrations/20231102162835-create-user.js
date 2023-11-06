@@ -12,11 +12,19 @@ module.exports = {
       userName: {
         type: Sequelize.STRING,
       },
-      email: {
-        type: Sequelize.STRING,
-      },
+        email: {
+          type: Sequelize.STRING,
+          unique: true,
+          allowNull: false,
+          validate: {
+            isEmail: true,
+          },
+        },
       password: {
         type: Sequelize.TEXT,
+      },
+      isAdmin: {
+        type: Sequelize.BOOLEAN
       },
       img: {
         type: Sequelize.TEXT,
