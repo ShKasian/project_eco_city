@@ -9,7 +9,7 @@ import newsReducer from './slices/newsSlice';
 const store = configureStore({
   reducer: {
     news: newsReducer,
-    userData: userSlice,
+    user: userSlice,
     categoriesData: categoryReducer,
     factoriesData: factoryReducer,
   },
