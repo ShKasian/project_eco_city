@@ -70,7 +70,6 @@ function NavBar(): JSX.Element {
               </Grid>
               <Grid item ml='555px' fontSize='20px'>
                {user.data.status !=='logged' &&(
-
                  <Link to="/signup">Регистрация/Авторизация</Link>
                )}
               </Grid>

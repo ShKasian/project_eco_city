@@ -8,11 +8,8 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const userRouter = require('./routes/userRouter');
 const PrivateCabinetRouter = require('./routes/PrivateCabinetRouter');
-
-
 const newsRouter = require('./routes/newsRouter');
-// const jwt = require('jsonwebtoken');
-const userRouter = require('./routes/userRouter');
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;

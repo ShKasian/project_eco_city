@@ -9,17 +9,20 @@ import {
   Box,
   Fab,
   Tooltip,
+  Input,
+  FormControl,
+  FormLabel,
 } from '@mui/material';
 
 import AddIcon from '@mui/icons-material/Add';
 import type { UserPrivateCabinetFormType } from '../../types/userTypes';
 
 
-type UserProfile = {
-  userName: UserPrivateCabinetFormType;
+// type UserProfile = {
+//   userName: UserPrivateCabinetFormType;
 
-  // Другие данные о пользователе
-};
+//   // Другие данные о пользователе
+// };
 
 type UserPrivateCabinetPageProps = {
   userName: string
@@ -54,22 +57,35 @@ export default function PrivateCabinetPage(): JSX.Element {
               sx={{ width: 250, height: 250 }}
             
             />
+         
+         
           </Button>
-
           <Grid item xs={12}>
-            <TextField
+           <FormControl>
+<FormLabel>
+
+            <Input   
+            type='file'
+            name='file'
+            // value={userProfile.userName}
+            />
+            </FormLabel>
+            </FormControl>
+        
+                <TextField
               margin="normal"
               fullWidth
               label="Имя пользователя"
               variant="outlined"
               value={userProfile.userName}
               onChange={(e) => setUserProfile({ ...userProfile, userName: e.target.value })}
-            />
+              />
           </Grid>
         </Grid>
       </Box>
 
 
+        
       <Button
         variant="contained"
         color="primary"
