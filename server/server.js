@@ -8,7 +8,6 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
 const newsRouter = require('./routes/newsRouter');
-// const jwt = require('jsonwebtoken');
 const userRouter = require('./routes/userRouter');
 
 const app = express();
