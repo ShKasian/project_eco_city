@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {
   Container,
   Typography,
@@ -11,17 +11,22 @@ import {
   Tooltip,
 } from '@mui/material';
 
-import { AddIcon } from '@chakra-ui/icons';
-// import LoadingButton from '@mui/material/LoadingButton';
+import AddIcon from '@mui/icons-material/Add';
+import type { UserPrivateCabinetFormType } from '../../types/userTypes';
 
 
 type UserProfile = {
-  userName: string;
+  userName: UserPrivateCabinetFormType;
+
   // Другие данные о пользователе
 };
 
+type UserPrivateCabinetPageProps = {
+  userName: string
+};
+
 export default function PrivateCabinetPage(): JSX.Element {
-  const [userProfile, setUserProfile] = React.useState<UserProfile>({
+  const [userProfile, setUserProfile] = React.useState<UserPrivateCabinetPageProps>({
     userName: '',
     // Инициализируйте другие данные о пользователе
   });
@@ -35,21 +40,21 @@ export default function PrivateCabinetPage(): JSX.Element {
       <Typography color="greenyellow" mt="55px" variant="h4" align="center" gutterBottom>
         Личный кабинет
       </Typography>
-
-      
       <Box
         sx={{
           display: 'flex',
         }}
       >
-
         <Grid container spacing={2}>
-          <Avatar
-            //   alt=""
-            //   src=""
-
-            sx={{ width: 250, height: 250 }}
-          />
+          <Button >
+            
+            <Avatar
+              //   alt=""
+              // src={`http://localhost:3001/img/${userProfile.userName}`}
+              sx={{ width: 250, height: 250 }}
+            
+            />
+          </Button>
 
           <Grid item xs={12}>
             <TextField
@@ -74,22 +79,16 @@ export default function PrivateCabinetPage(): JSX.Element {
         Сохранить профиль
       </Button>
 
+      <Box style={{ display: 'flex' }} mt="45px">
+        <Button aria-multiline>
 
-      <Box style={{display:'flex'}} mt='45px'
-      >
-          <Button  aria-multiline>
           <Tooltip title="Добавить инициативу" aria-label="add">
-        <Fab color="secondary" aria-label="add">
-
-          <AddIcon />
-        </Fab>
-        </Tooltip>
-          </Button>
+            <Fab color="secondary" aria-label="add">
+              <AddIcon />
+            </Fab>
+          </Tooltip>
+        </Button>
       </Box>
-
-     
-
-
     </Container>
   );
 }

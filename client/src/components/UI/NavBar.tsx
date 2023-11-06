@@ -12,10 +12,26 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import { logoutUserThunk } from "../../features/redux/thunkActions/userThunkActions"
 
 function NavBar(): JSX.Element {
+  const dispatch = useAppDispatch()
+
+//   const userSignInHandler= (e: React.FormEvent<HTMLFormElement>): void => {
+//     e.preventDefault();
+//  {
+//       return;
+//     }
+
+//    void dispatch(signinUserThunk())
+//   };
+
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
+  const user = useAppSelector(state => state.user)
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget);
@@ -66,18 +82,23 @@ function NavBar(): JSX.Element {
                 <Link to="/initiative">Идеи</Link>
               </Grid>
               <Grid item ml='555px' fontSize='20px'>
-                <Link to="/signup">Регистрация/Авторизация</Link>
+               {user.data.status !=='logged' &&(
+
+                 <Link to="/signup">Регистрация/Авторизация</Link>
+               )}
               </Grid>
             </Grid>
           </Box>
 
+            {user.data.status === 'logged' && (
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="" src="" />
               </IconButton>
             </Tooltip>
-            <Menu
+
+              <Menu
               sx={{ mt: '38px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -94,13 +115,16 @@ function NavBar(): JSX.Element {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu}>
-                <Link to="/lk">Личный кабинет</Link>
+                <Link to="/lk/:id">Личный кабинет</Link>
               </MenuItem>
               <MenuItem onClick={handleCloseUserMenu}>
-                <Link to="/">Выход</Link>
+                <Link to="/" onClick={() => void dispatch(logoutUserThunk())}>
+                  Выход
+                </Link>
               </MenuItem>
             </Menu>
           </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

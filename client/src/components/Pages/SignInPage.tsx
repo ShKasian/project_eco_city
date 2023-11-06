@@ -22,7 +22,7 @@ const defaultTheme = createTheme();
 export default function SignInPage(): JSX.Element {
   const dispatch = useAppDispatch()
 
-  const userSignInHandler: React.FormEventHandler<HTMLFormElement> = (e): void => {
+  const userSignInHandler= (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
     const formData = Object.fromEntries(new FormData(e.currentTarget)) as UserSigninFormType;
@@ -33,9 +33,6 @@ export default function SignInPage(): JSX.Element {
 
    void dispatch(signinUserThunk(formData))
   };
-
-
-
 
   // const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
   //   e.preventDefault();
@@ -113,13 +110,8 @@ export default function SignInPage(): JSX.Element {
                 Войти
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Забыли пароль?
-                  </Link>
-                </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/signup" variant="body2">
                     Нет аккаунта? Зарегистрироваться
                   </Link>
                 </Grid>

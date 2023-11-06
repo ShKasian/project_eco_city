@@ -45,21 +45,7 @@ module.exports = {
       ],
       {},
     );
-    await queryInterface.bulkInsert(
-      'Users',
-      [
-        {
-          id: 1,
-          userName: 'admin',
-          email: 'admin@mail.ru',
-          password: '123',
-          // role: 'admin',
-          img: 'https://cropas.by/wp-content/uploads/2015/05/admin.jpg',
-        },
-      ],
-
-      {},
-    );
+  
     await queryInterface.bulkInsert(
       'Initiatives',
       [
