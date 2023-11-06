@@ -73,7 +73,6 @@ export default function PrivateCabinetPage(): JSX.Element {
       >
         Сохранить профиль
       </Button>
-
       <Box style={{ display: 'flex' }} mt="45px">
         <Button aria-multiline>
           <Tooltip title="Добавить инициативу" aria-label="add">
