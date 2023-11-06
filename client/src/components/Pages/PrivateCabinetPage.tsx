@@ -47,11 +47,12 @@ export default function PrivateCabinetPage(): JSX.Element {
       >
         <Grid container spacing={2}>
           <Button >
+            
             <Avatar
               //   alt=""
               // src={`http://localhost:3001/img/${userProfile.userName}`}
               sx={{ width: 250, height: 250 }}
-              
+            
             />
           </Button>
 
