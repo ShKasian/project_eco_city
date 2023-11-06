@@ -23,6 +23,9 @@ module.exports = {
       password: {
         type: Sequelize.TEXT,
       },
+      isAdmin: {
+        type: Sequelize.BOOLEAN
+      },
       img: {
         type: Sequelize.TEXT,
       },
