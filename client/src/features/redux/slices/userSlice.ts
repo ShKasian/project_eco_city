@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { UserType } from '../../../types/userTypes';
-import { signinUserThunk, logoutUserThunk, signUpUserThunk } from '../thunkActions/userThunkActions';
+import { signinUserThunk, logoutUserThunk, signUpUserThunk, checkUserThunk } from '../thunkActions/userThunkActions';
 
 
 type UserSliceType = {
@@ -21,18 +21,18 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     // checkUserThunk
-    // builder.addCase(checkUserThunk.fulfilled, (state, { payload }) => {
-    //   state.data = {
-    //     ...payload,
-    //     status: 'logged',
-    //   };
-    // });
-    // builder.addCase(checkUserThunk.pending, (state) => {
-    //   state.data = { status: 'loading' };
-    // });
-    // builder.addCase(checkUserThunk.rejected, (state) => {
-    //   state.data = { status: 'guest' };
-    // });
+    builder.addCase(checkUserThunk.fulfilled, (state, { payload }) => {
+      state.data = {
+        ...payload,
+        status: 'logged',
+      };
+    });
+    builder.addCase(checkUserThunk.pending, (state) => {
+      state.data = { status: 'loading' };
+    });
+    builder.addCase(checkUserThunk.rejected, (state) => {
+      state.data = { status: 'guest' };
+    });
 
     // signUpUserThunk
     builder.addCase(signUpUserThunk.fulfilled, (state, { payload }) => {

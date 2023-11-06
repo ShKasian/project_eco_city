@@ -33,11 +33,8 @@ export default function SignUpPage(): JSX.Element {
 
     }
 
-    console.log("***********", formData)
-
    void dispatch(signUpUserThunk(dataNew)) // сетевой запрос
     .catch(() => null);
-
   };
 
   return (
@@ -92,7 +89,7 @@ export default function SignUpPage(): JSX.Element {
                 fullWidth
                 id="email"
                 label="Введите ваш email"
-                type="text"
+                type="email"
                 name="email"
                 autoComplete="email"
                 autoFocus
