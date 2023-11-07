@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { FactoryModelTypes } from 'src/types/factoryTypes';
-import { getFactoriesHandlerThunk } from '../thunkActions/factoryThunkActions';
+import {
+  getFactoriesHandlerThunk,
+  getFilterFactoryHandlerThunk,
+} from '../thunkActions/factoryThunkActions';
 
 const initialState: FactoryModelTypes[] = [];
 
@@ -10,6 +13,8 @@ const factoriesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getFactoriesHandlerThunk.fulfilled, (state, action) => action.payload);
+
+    builder.addCase(getFilterFactoryHandlerThunk.fulfilled, (state, action) => action.payload);
   },
 });
 

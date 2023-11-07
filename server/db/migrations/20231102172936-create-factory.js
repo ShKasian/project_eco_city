@@ -15,6 +15,12 @@ module.exports = {
       img: {
         type: Sequelize.STRING
       },
+      coordX: {
+        type: Sequelize.FLOAT
+      },
+      coordY: {
+        type: Sequelize.FLOAT
+      },
       categoryId: {
         type: Sequelize.INTEGER,
         references: {
