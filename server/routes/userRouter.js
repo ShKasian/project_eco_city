@@ -11,7 +11,7 @@ userRouter.post('/signup', async (req, res) => {
     try {
       const [user, created] = await User.findOrCreate({
         where: { email },
-        defaults: { userName, password: await bcrypt.hash(password, 10), isAdmin: user.isAdmin },
+        defaults: { userName, password: await bcrypt.hash(password, 10), isAdmin: false },
       });
       if (!created) return res.status(401).json({ message: 'User already exists' });
 
