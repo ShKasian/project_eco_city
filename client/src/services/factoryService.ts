@@ -10,3 +10,13 @@ export const getFactories = async (): Promise<FactoryModelTypes[]> => {
     throw error;
   }
 };
+
+export const getFilterFactory = async (value: string): Promise<FactoryModelTypes[]> => {
+  try {
+    const { data } = await apiService<FactoryModelTypes[]>(`/factory/filter/${value}`);    
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

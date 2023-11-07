@@ -1,7 +1,6 @@
 const express = require('express');
-const {Factory} = require('../db/models');
+const { Factory } = require('../db/models');
 const factoryRouter = express.Router();
-
 
 factoryRouter.route('/').get(async (req, res) => {
   try {
@@ -14,16 +13,21 @@ factoryRouter.route('/').get(async (req, res) => {
   }
 });
 
-factoryRouter.route('/:factoryId').get(async (req, res) => {
-    try {
-      const { factoryId } = req.params;
-      const result = await Factory.findOne({ where: { id: factoryId } });
-      res.status(200).json(result);
-    } catch (error) {
-      console.log(error);
-      return res.sendStatus(500);
-    }
-  });
 
 
-  module.exports = factoryRouter;
+factoryRouter.route('/filter/:value').get(async (req, res) => {
+  try {
+    const { value } = req.params;
+    console.log(value);
+    const data = await Factory.findAll({
+      where: { categoryId: value },
+    });
+    console.log(data);
+    res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+module.exports = factoryRouter;

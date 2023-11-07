@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 
 const express = require('express');
@@ -11,11 +10,8 @@ const categoryRouter = require('./routes/categoryRouter');
 const factoryRouter = require('./routes/factoryRouter');
 const PrivateCabinetRouter = require('./routes/PrivateCabinetRouter');
 
-
-
 const newsRouter = require('./routes/newsRouter');
 // const jwt = require('jsonwebtoken');
-const userRouter = require('./routes/userRouter');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -40,14 +36,10 @@ app.use(
   }),
 );
 
-
-
 app.use('/api/category', categoryRouter);
 app.use('/api/factory', factoryRouter);
 app.use('/api/lk', PrivateCabinetRouter);
 app.use('/api/user', userRouter);
 app.use('/api/news', newsRouter);
-
-
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));
