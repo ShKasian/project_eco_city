@@ -1,4 +1,3 @@
-/* eslint-disable import/newline-after-import */
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,7 +10,15 @@ export type CardNewsPropsType = {
   news: CardNewsType;
 };
 
+const MAX_TEXT_LENGTH = 100; // Максимальная длина текста, после которой он будет обрезан
+
 export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
+  // Обрезаем текст, если его длина больше MAX_TEXT_LENGTH
+  const truncatedBody =
+    news.body.length > MAX_TEXT_LENGTH
+      ? `${news.body.substring(0, MAX_TEXT_LENGTH)}...`
+      : news.body;
+
   return (
     <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
       <CardActionArea>
@@ -21,7 +28,7 @@ export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
             {news.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {news.body}
+            {truncatedBody}
           </Typography>
         </CardContent>
       </CardActionArea>
