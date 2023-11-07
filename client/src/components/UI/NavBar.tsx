@@ -12,13 +12,25 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
-import { useAppSelector } from '../../hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import { logoutUserThunk } from "../../features/redux/thunkActions/userThunkActions"
 
 function NavBar(): JSX.Element {
-  // const {logoutUserHandler} = useUserHandler()
+  const dispatch = useAppDispatch()
+
+//   const userSignInHandler= (e: React.FormEvent<HTMLFormElement>): void => {
+//     e.preventDefault();
+//  {
+//       return;
+//     }
+
+//    void dispatch(signinUserThunk())
+//   };
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-  const user = useAppSelector(state => state.userData)
+
+  const user = useAppSelector(state => state.user)
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget);
@@ -71,7 +83,7 @@ function NavBar(): JSX.Element {
               <Grid item ml='555px' fontSize='20px'>
                {user.data.status !=='logged' &&(
 
-                 <Link to="/signup">Регистрация/Авторизация</Link>
+                 <Link to="/signup">Регистрация / Вход</Link>
                )}
               </Grid>
             </Grid>
@@ -105,7 +117,9 @@ function NavBar(): JSX.Element {
                 <Link to="/lk/:id">Личный кабинет</Link>
               </MenuItem>
               <MenuItem onClick={handleCloseUserMenu}>
-                <Link to="/" >Выход</Link>
+                <Link to="/" onClick={() => void dispatch(logoutUserThunk())}>
+                  Выход
+                </Link>
               </MenuItem>
             </Menu>
           </Box>

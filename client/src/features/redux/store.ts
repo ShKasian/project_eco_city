@@ -5,13 +5,16 @@ import factoryReducer from './slices/factorySlice'
 
 
 import newsReducer from './slices/newsSlice';
+import initiativeReduser from './slices/initiativeSlice';
 
 const store = configureStore({
   reducer: {
     news: newsReducer,
-    userData: userSlice,
+    initiative: initiativeReduser,
+    user: userSlice,
     categoriesData: categoryReducer,
     factoriesData: factoryReducer,
+
   },
 });
 

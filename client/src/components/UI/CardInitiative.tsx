@@ -5,28 +5,38 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
+import type { CardInitiativeType, CardInitiativeFormType } from '../../types/initiativeTypes';
 
-export default function CardInitiative({}): JSX.Element {
+export type CardInitiativePropsType = {
+  initiative: CardInitiativeType;
+};
+
+export default function CardInitiative({ initiative }: CardInitiativePropsType): JSX.Element {
   return (
-    <Link to={`/initiative/${id}`}>
-      <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
-        <CardActionArea>
-          <CardMedia sx={{ objectFit: 'cover', height: '250px' }} component="img" image="" />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              initiative
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Typography variant="body2" color="text.secondary">
-            Date
+    <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
+      <CardActionArea>
+        <CardMedia
+          sx={{ objectFit: 'cover', height: '250px' }}
+          component="img"
+          image={initiative.img}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {initiative.title}
           </Typography>
-        </CardActions>
-      </Card>
-    </Link>
+          <Typography variant="body2" color="text.secondary">
+            {initiative.body}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Typography variant="body2" color="text.secondary">
+          {initiative.createdAt}
+        </Typography>
+      </CardActions>
+    </Card>
   );
 }
+
+// <Link to={`/initiative/${id}`}>
+// </Link>

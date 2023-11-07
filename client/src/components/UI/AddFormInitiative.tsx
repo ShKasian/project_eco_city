@@ -5,7 +5,12 @@ import { useAppDispatch } from '../../features/redux/hooks';
 
 export default function AddNewsForm(): JSX.Element {
   const dispatch = useAppDispatch();
-  const [inputs, setInputs] = useState<CardInitiativeFormType>({ img: '', title: '', body: '' });
+  const [inputs, setInputs] = useState<CardInitiativeFormType>({
+    img: '',
+    title: '',
+    body: '',
+    createdAt: '',
+  });
 
   const changeHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -38,6 +43,15 @@ export default function AddNewsForm(): JSX.Element {
         margin="normal"
         placeholder="Body"
         value={inputs.body}
+        onChange={changeHandler}
+      />
+      <TextField
+        fullWidth
+        name="createdAt"
+        variant="outlined"
+        margin="normal"
+        placeholder="CreatedAt"
+        value={inputs.createdAt}
         onChange={changeHandler}
       />
       <Box mt={2}>

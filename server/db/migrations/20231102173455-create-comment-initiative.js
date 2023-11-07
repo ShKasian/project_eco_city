@@ -7,41 +7,44 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       body: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       name: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+      },
+      img: {
+        type: Sequelize.TEXT,
       },
       userId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
-          key: 'id'
-        }
+          key: 'id',
+        },
       },
       initiativeId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Initiatives',
-          key: 'id'
-        }
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('NOW')
+        defaultValue: Sequelize.fn('NOW'),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('NOW')
-      }
+        defaultValue: Sequelize.fn('NOW'),
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('CommentInitiatives');
-  }
+  },
 };
