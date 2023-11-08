@@ -4,7 +4,7 @@ import categoryReducer from './slices/categorySlice';
 import factoryReducer from './slices/factorySlice';
 import newsReducer from './slices/newsSlice';
 import initiativeReduser from './slices/initiativeSlice';
-import ideaSlice from './slices/ideaSlice';
+import ideaReducer from './slices/ideaSlice';
 
 const store = configureStore({
   reducer: {
@@ -13,7 +13,7 @@ const store = configureStore({
     user: userSlice,
     categoriesData: categoryReducer,
     factoriesData: factoryReducer,
-    ideas: ideaSlice,
+    ideas: ideaReducer,
   },
 });
 
