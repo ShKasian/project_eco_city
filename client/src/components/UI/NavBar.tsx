@@ -13,25 +13,24 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { logoutUserThunk } from "../../features/redux/thunkActions/userThunkActions"
+import { logoutUserThunk } from '../../features/redux/thunkActions/userThunkActions';
 
 function NavBar(): JSX.Element {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
-//   const userSignInHandler= (e: React.FormEvent<HTMLFormElement>): void => {
-//     e.preventDefault();
-//  {
-//       return;
-//     }
+  //   const userSignInHandler= (e: React.FormEvent<HTMLFormElement>): void => {
+  //     e.preventDefault();
+  //  {
+  //       return;
+  //     }
 
-//    void dispatch(signinUserThunk())
-//   };
-
+  //    void dispatch(signinUserThunk())
+  //   };
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-  const user = useAppSelector(state => state.user)
+  const user = useAppSelector((state) => state.user);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget);
@@ -49,7 +48,6 @@ function NavBar(): JSX.Element {
   };
 
   return (
-
     <AppBar position="static" sx={{ backgroundColor: '#4CAF' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -71,58 +69,56 @@ function NavBar(): JSX.Element {
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Grid container fontSize='23px'>
-              <Grid item ml='50px'>
+            <Grid container fontSize="23px">
+              <Grid item ml="50px">
                 <Link to="/news">Новости</Link>
               </Grid>
-              <Grid item ml='70px'>
+              <Grid item ml="70px">
                 <Link to="/reception">Пункты сбыта</Link>
               </Grid>
-              <Grid item ml='75px'>
+              <Grid item ml="75px">
                 <Link to="/initiative">Идеи</Link>
               </Grid>
-              <Grid item ml='555px' fontSize='20px'>
-               {user.data.status !=='logged' &&(
-                 <Link to="/signup">Регистрация/Авторизация</Link>
-               )}
+              <Grid item ml="555px" fontSize="20px">
+                {user.data.status !== 'logged' && <Link to="/signup">Регистрация/Авторизация</Link>}
               </Grid>
             </Grid>
           </Box>
 
-            {user.data.status === 'logged' && (
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="" src="" />
-              </IconButton>
-            </Tooltip>
+          {user.data.status === 'logged' && (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="" src="" />
+                </IconButton>
+              </Tooltip>
 
               <Menu
-              sx={{ mt: '38px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Link to="/lk/:id">Личный кабинет</Link>
-              </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Link to="/" onClick={() => void dispatch(logoutUserThunk())}>
-                  Выход
-                </Link>
-              </MenuItem>
-            </Menu>
-          </Box>
+                sx={{ mt: '38px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to="/lk">Личный кабинет</Link>
+                </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to="/" onClick={() => void dispatch(logoutUserThunk())}>
+                    Выход
+                  </Link>
+                </MenuItem>
+              </Menu>
+            </Box>
           )}
         </Toolbar>
       </Container>

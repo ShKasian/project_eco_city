@@ -7,7 +7,14 @@ export type UserModelType = {
 export type UserSignUpFormType = Omit<UserModelType, 'id'> & { password: string };
 export type UserSigninFormType = Omit<UserSignUpFormType, 'userName'>;
 
-export type UserPrivateCabinetFormType = Omit<UserModelType, 'email'> & { img: string };
+export type PrivateCabinetType = (UserModelType) & { img: string };
+export type PrivateCabinetFormType = Omit<PrivateCabinetType, 'id'> & { img: string };
+
+
+export type PostInputs = {
+  title: HTMLInputElement;
+  file: HTMLInputElement & {files: FileList};
+}
 
 
 export type UserType =

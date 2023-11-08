@@ -31,7 +31,7 @@ const user = useAppSelector((store) => store.user.data);
       <Route path="/" element={<MainPage />} />
       <Route element={<PrivateRouter isAllowed={user.status === 'guest'} redirect='/signup' />} /> 
         <Route path="/news" element={<NewsPage />} />
-        <Route path="/lk/:id" element={<PrivateCabinetPage />} />
+        <Route path="/lk" element={<PrivateCabinetPage />} />
         <Route path="/reception" element={<ReceptionPointsPage />} />
         <Route path="/initiative" element={<InitiativePage />} />
       <Route element={<PrivateRouter isAllowed={user.status === 'logged'} redirect='/' />}>

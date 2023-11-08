@@ -11,7 +11,6 @@ const userRouter = require('./routes/userRouter');
 const categoryRouter = require('./routes/categoryRouter');
 const factoryRouter = require('./routes/factoryRouter');
 const PrivateCabinetRouter = require('./routes/PrivateCabinetRouter');
-const newsRouter = require('./routes/newsRouter');
 
 
 

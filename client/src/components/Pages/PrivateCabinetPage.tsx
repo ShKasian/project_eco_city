@@ -1,42 +1,52 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Container,
   Typography,
   Button,
   Grid,
-  TextField,
   Avatar,
   Box,
   Fab,
   Tooltip,
   Input,
-  FormControl,
-  FormLabel,
 } from '@mui/material';
 
 import AddIcon from '@mui/icons-material/Add';
-import type { UserPrivateCabinetFormType } from '../../types/userTypes';
+import type { PrivateCabinetFormType } from '../../types/userTypes';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { EditPrivateCabinetThunk } from '../../features/redux/thunkActions/userThunkActions';
 
-
-// type UserProfile = {
-//   userName: UserPrivateCabinetFormType;
-
-//   // Другие данные о пользователе
+// type UserPrivateCabinetPageProps = {
+//   userName: string
 // };
 
-type UserPrivateCabinetPageProps = {
-  userName: string
+type PrivateCabinetProps = {
+  user: PrivateCabinetFormType;
 };
 
-export default function PrivateCabinetPage(): JSX.Element {
-  const [userProfile, setUserProfile] = React.useState<UserPrivateCabinetPageProps>({
-    userName: '',
-    // Инициализируйте другие данные о пользователе
+export default function PrivateCabinetPage({ user }: PrivateCabinetProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const [userProfile, setUserProfile] = useState<PrivateCabinetFormType>({
+    userName: user?.userName || '',
+    img: user?.img || '',
+    email: user?.email || '',
   });
 
-  const handleSaveProfile = (): void => {
-    // Здесь можно добавить логику сохранения данных профиля
+  const [file, setFile] = useState<PrivateCabinetFormType>();
+
+  const changeHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setUserProfile((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
+  const submitAvatar = useCallback((e: React.FormEvent<HTMLFormElement & >): void => {
+    e.preventDefault();
+    console.log(e);
+
+    const formData = new FormData();
+    formData.append('file', e.target.input.value);
+    void dispatch(EditPrivateCabinetThunk(formData));
+  }, []);
 
   return (
     <Container maxWidth="md">
@@ -49,55 +59,41 @@ export default function PrivateCabinetPage(): JSX.Element {
         }}
       >
         <Grid container spacing={2}>
-          <Button >
-            
+          <Button>
             <Avatar
               //   alt=""
-              // src={`http://localhost:3001/img/${userProfile.userName}`}
+              src={
+                userProfile.img
+                  ? `http://localhost:3001/img/${userProfile.img}`
+                  : `http://localhost:3001/img/admin.png`
+              }
               sx={{ width: 250, height: 250 }}
-            
             />
-         
-         
           </Button>
-          <Grid item xs={12}>
-           <FormControl>
-<FormLabel>
 
-            <Input   
-            type='file'
-            name='file'
-            // value={userProfile.userName}
-            />
-            </FormLabel>
-            </FormControl>
-        
-                <TextField
-              margin="normal"
-              fullWidth
-              label="Имя пользователя"
+          <form onSubmit={submitAvatar}>
+            <Button
+              type="submit"
               variant="outlined"
-              value={userProfile.userName}
-              onChange={(e) => setUserProfile({ ...userProfile, userName: e.target.value })}
-              />
+              size="large"
+              // onClick={() => void dispatch(EditPrivateCabinetThunk(userProfile))}
+            >
+              <Input name="img" type="file" />
+              Send
+            </Button>
+          </form>
+          <Grid item xs={12}>
+            <Typography color="greenyellow" mt="55px" variant="h4" align="center" gutterBottom>
+              {userProfile.email}dv d
+            </Typography>
+            <Typography color="greenyellow" mt="55px" variant="h4" align="center" gutterBottom>
+              {userProfile.email}
+            </Typography>
           </Grid>
         </Grid>
       </Box>
-
-
-        
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleSaveProfile}
-        style={{ marginTop: '20px' }}
-      >
-        Сохранить профиль
-      </Button>
-
       <Box style={{ display: 'flex' }} mt="45px">
         <Button aria-multiline>
-
           <Tooltip title="Добавить инициативу" aria-label="add">
             <Fab color="secondary" aria-label="add">
               <AddIcon />
