@@ -2,6 +2,7 @@ import { Button } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import type { FactoryModelTypes as MyFactoryModel } from 'src/types/factoryTypes';
+// import ymaps from 'yandex-maps';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import {
   getFactoriesHandlerThunk,
@@ -19,7 +20,6 @@ function ReceptionPointsPage(): JSX.Element {
 
   useEffect(() => {
     void dispatch(getFactoriesHandlerThunk());
-
   }, []);
 
   const loadMarkers = (factory: MyFactoryModel[]): void => {
@@ -66,10 +66,10 @@ function ReceptionPointsPage(): JSX.Element {
     }
   }, []); // Добавляем зависимость factories
 
-  useEffect(()=> {
-    ymapRef.current?.destroy()
+  useEffect(() => {
+    ymapRef.current?.destroy();
     loadMap();
-  },[factories])
+  }, [factories]);
 
   const filterHandler = async (value: string): Promise<void> => {
     setSelectedCategory(value);
@@ -114,7 +114,7 @@ function ReceptionPointsPage(): JSX.Element {
           <div id="map" style={{ width: '100%', height: '400px' }} />
         </Grid>
       </Grid>
-      <Grid item>
+      <Grid item xs={12}>
         <CardFactoryList />
       </Grid>
     </Grid>
