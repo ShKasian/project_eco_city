@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 
 import AddIcon from '@mui/icons-material/Add';
-import type { PrivateCabinetFormType } from '../../types/userTypes';
+import type { PostInputs, PrivateCabinetFormType } from '../../types/userTypes';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { EditPrivateCabinetThunk } from '../../features/redux/thunkActions/userThunkActions';
 
@@ -39,14 +39,39 @@ export default function PrivateCabinetPage({ user }: PrivateCabinetProps): JSX.E
     setUserProfile((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const submitAvatar = useCallback((e: React.FormEvent<HTMLFormElement & >): void => {
+  const submitAvatar = useCallback((e: React.FormEvent<HTMLFormElement & PostInputs >): void => {
     e.preventDefault();
     console.log(e);
 
     const formData = new FormData();
-    formData.append('file', e.target.input.value);
+    formData.append('file', e.currentTarget.file.files[0]);
+
+    formData.append('file', e.currentTarget.file.files[0]);
     void dispatch(EditPrivateCabinetThunk(formData));
   }, []);
+
+
+
+
+  const submitAvatar = useCallback( (e: React.FormEvent<HTMLFormElement & PostInputs>):void => {
+    e.preventDefault();
+
+    if(!e.currentTarget.title.value || !e.currentTarget.file.files[0]) {
+        toast({
+            title:'Ошибка',
+            description:'Не все поля заполнены'
+        })
+        return
+    }
+    const formData = new FormData();
+    formData.append('title', e.currentTarget.title.value);
+    formData.append('file', e.currentTarget.file.files[0]);
+    
+    postSubmitService(formData)
+    .then(data => setPosts(prev => [data,...prev]))
+    .catch(err => console.log(err))
+},[])
+
 
   return (
     <Container maxWidth="md">
