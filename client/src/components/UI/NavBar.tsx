@@ -18,16 +18,6 @@ import { logoutUserThunk } from '../../features/redux/thunkActions/userThunkActi
 function NavBar(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  //   const userSignInHandler= (e: React.FormEvent<HTMLFormElement>): void => {
-  //     e.preventDefault();
-  //  {
-  //       return;
-  //     }
-
-  //    void dispatch(signinUserThunk())
-  //   };
-
-
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -52,7 +42,7 @@ function NavBar(): JSX.Element {
     <AppBar position="static" sx={{ backgroundColor: '#4CAF' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography variant="h2" noWrap component="a" href="/">
+          <Typography variant="h3" noWrap component="a" href="/">
             ♻
           </Typography>
 
@@ -70,21 +60,25 @@ function NavBar(): JSX.Element {
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Grid container fontSize="23px">
-              <Grid item ml="50px">
+
+            <Grid container fontSize='22px'>
+              <Grid item ml='50px'>
                 <Link to="/news">Новости</Link>
               </Grid>
-              <Grid item ml="70px">
-                <Link to="/reception">Пункты сбыта</Link>
+              <Grid item ml='70px'>
+                <Link to="/reception">Пункты переработки</Link>
               </Grid>
-              <Grid item ml="75px">
-                <Link to="/initiative">Идеи</Link>
+              <Grid item ml='70px'>
+                <Link to="/initiative">Инициативы</Link>
               </Grid>
-
-              <Grid item ml='555px' fontSize='20px'>
+              <Grid item ml='400px' fontSize='22px'>
                {user.data.status !=='logged' &&(
-
-                 <Link to="/signup">Регистрация / Вход</Link>
+                 <Link to="/signup"> Регистрация</Link>
+               )}
+              </Grid>
+              <Grid item ml='80px' fontSize='22px'>
+               {user.data.status !=='logged' &&(
+                <Link to="/signin"> Войти</Link>
                )}
 
               </Grid>
