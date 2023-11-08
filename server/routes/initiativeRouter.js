@@ -1,15 +1,21 @@
 const express = require('express');
-const { Initiative } = require('../db/models');
+const { Initiative, CommentInitiative } = require('../db/models');
 
 const router = express.Router();
 
 router
   .route('/')
   .get(async (req, res) => {
-    const initiatives = await Initiative.findAll();
-    console.log(initiatives, '---------------------');
+    const initiatives = await Initiative.findAll({ include: CommentInitiative });
+    console.log(JSON.stringify(initiatives, null, 2));
     res.json(initiatives);
   })
+  // .route('/')
+  // .get(async (req, res) => {
+  //   const initiatives = await Initiative.findOne( where id );
+  //   console.log(JSON.stringify(initiatives, null, 2));
+  //   res.json(initiatives);
+  // })
   .post(async (req, res) => {
     const newInitiative = await Initiative.create(req.body);
     res.json(newInitiative);

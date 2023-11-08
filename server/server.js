@@ -14,6 +14,7 @@ const PrivateCabinetRouter = require('./routes/PrivateCabinetRouter');
 const ideaRouter = require('./routes/ideaRouter');
 
 
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -36,8 +37,6 @@ app.use(
     },
   }),
 );
-
-
 
 app.use('/api/category', categoryRouter);
 app.use('/api/factory', factoryRouter);
