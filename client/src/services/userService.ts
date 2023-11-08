@@ -1,6 +1,7 @@
 import type {
+  FormDataProfile,
+  PrivateCabinetType,
   UserModelType,
-  UserPrivateCabinetFormType,
   UserSignUpFormType,
   UserSigninFormType,
 } from '../types/userTypes';
@@ -12,7 +13,6 @@ export const checkUserService = async (): Promise<UserModelType> => {
 };
 
 export const submitSignupService = async (formData: UserSignUpFormType): Promise<UserModelType> => {
-
   const { data } = await apiService.post<UserModelType>('/user/signup', formData);
   return data;
 };
@@ -22,17 +22,14 @@ export const submitSigninService = async (formData: UserSigninFormType): Promise
   return data;
 };
 
-
-export const GetPrivateCabinet = (id: UserPrivateCabinetFormType['id']): Promise<UserPrivateCabinetFormType> => 
-apiService<UserPrivateCabinetFormType>(`api/lk/${id}`).then((res) => res.data);
-
-export const submitPrivateCabinet = async (
-  id: UserPrivateCabinetFormType['id'],
-  formData: UserPrivateCabinetFormType,
-): Promise<UserModelType> => {
-  const { data } = await apiService.post<UserModelType>(`/lk/${id}`, formData);
+export const GetPrivateCabinetService = async (formData: FormDataProfile): Promise<PrivateCabinetType> => {
+  const { data } = await apiService.get<PrivateCabinetType>('/lk', formData);
   return data;
+};
 
+export const EditPrivateCabinetService = async (formData: FormDataProfile,): Promise<FormDataProfile> => {
+  const { data } = await apiService.patch<FormDataProfile>('/lk', formData);
+  return data;
 };
 
 export const logoutUserService = (): Promise<void> => apiService('/user/logout');
