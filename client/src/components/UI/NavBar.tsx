@@ -78,7 +78,7 @@ function NavBar(): JSX.Element {
                 <Link to="/reception">Пункты сбыта</Link>
               </Grid>
               <Grid item ml='75px'>
-                <Link to="/initiative">Идеи</Link>
+                <Link to="/initiative">Инициативы</Link>
               </Grid>
               <Grid item ml='555px' fontSize='20px'>
                {user.data.status !=='logged' &&(
