@@ -1,24 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { UserPrivateCabinetFormType, UserType } from '../../../types/userTypes';
-import { signinUserThunk, logoutUserThunk, signUpUserThunk, checkUserThunk, EditPrivateCabinetThunk } from '../thunkActions/userThunkActions';
-
+import type { PrivateCabinetType, UserType } from '../../../types/userTypes';
+import {
+  signinUserThunk,
+  logoutUserThunk,
+  signUpUserThunk,
+  checkUserThunk,
+  EditPrivateCabinetThunk,
+  getProfileThunk,
+} from '../thunkActions/userThunkActions';
 
 type UserSliceType = {
   data: UserType;
   error: Error | null;
   logoutDialogOpened: boolean;
-  privateCabinet: UserPrivateCabinetFormType[];
+  privateCabinet: PrivateCabinetType[];
 };
-
-
-
-
 
 const initialState: UserSliceType = {
   data: { status: 'loading' },
   error: null,
   logoutDialogOpened: false,
-  privateCabinet: []
+  privateCabinet: [],
 };
 
 const userSlice = createSlice({
@@ -62,13 +64,13 @@ const userSlice = createSlice({
       state.data = { status: 'guest' };
     });
 
+
     // EditPrivateCabinetThunk
-  builder.addCase(EditPrivateCabinetThunk.fulfilled, (state, action) => {
+    builder.addCase(EditPrivateCabinetThunk.fulfilled, (state, action) => {
       const index = state.privateCabinet.findIndex((el) => el.id === action.payload.id);
       state.privateCabinet[index] = action.payload;
     });
     builder.addCase(EditPrivateCabinetThunk.rejected, (state, action) => state);
-
 
     // logoutUserThunk
     builder.addCase(logoutUserThunk.fulfilled, (state) => {
@@ -77,6 +79,5 @@ const userSlice = createSlice({
     builder.addCase(logoutUserThunk.rejected, (state) => state);
   },
 });
-
 
 export default userSlice.reducer;

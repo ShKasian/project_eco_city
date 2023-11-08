@@ -12,12 +12,9 @@ import type {
   UserSigninFormType,
   UserModelType,
   UserSignUpFormType,
-  PrivateCabinetFormType,
   PrivateCabinetType,
+  FormDataProfile,
 } from '../../../types/userTypes';
-
-
-
 
 export const checkUserThunk = createAsyncThunk<UserModelType>('/user/check', () =>
   checkUserService(),
@@ -33,15 +30,15 @@ export const signinUserThunk = createAsyncThunk<UserModelType, UserSigninFormTyp
   (formData) => submitSigninService(formData),
 );
 
-export const getProfileThunk = createAsyncThunk<
-  UserModelType,
-  {formData: PrivateCabinetType }
-  >('lk', async ({formData }) => GetPrivateCabinetService());
+export const getProfileThunk = createAsyncThunk<PrivateCabinetType, { formData: PrivateCabinetType }>(
+  '/lk',
+  async (formData) => GetPrivateCabinetService(formData),
+);
 
-export const EditPrivateCabinetThunk = createAsyncThunk<
-  UserModelType,
-  { formData: PrivateCabinetFormType }
->('lk', async (formData ) => EditPrivateCabinetService(formData));
+export const EditPrivateCabinetThunk = createAsyncThunk<FormDataProfile, {formData: PrivateCabinetType}>(
+  '/lk',
+  async (formData): Promise<FormDataProfile> => EditPrivateCabinetService(formData),
+);
 
 export const logoutUserThunk = createAsyncThunk<boolean>('/user/logout', async () =>
   logoutUserService().then(() => true),

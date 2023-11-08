@@ -1,5 +1,6 @@
 import type {
-  PrivateCabinetFormType,
+  FormDataProfile,
+  PrivateCabinetType,
   UserModelType,
   UserSignUpFormType,
   UserSigninFormType,
@@ -21,13 +22,13 @@ export const submitSigninService = async (formData: UserSigninFormType): Promise
   return data;
 };
 
-export const GetPrivateCabinetService = async (): Promise<UserModelType> => {
-  const { data } = await apiService<UserModelType>('/lk');
+export const GetPrivateCabinetService = async (formData: FormDataProfile): Promise<PrivateCabinetType> => {
+  const { data } = await apiService.get<PrivateCabinetType>('/lk', formData);
   return data;
 };
 
-export const EditPrivateCabinetService = async (formData: PrivateCabinetFormType,): Promise<UserModelType> => {
-  const { data } = await apiService.post<UserModelType>('/lk', formData);
+export const EditPrivateCabinetService = async (formData: FormDataProfile,): Promise<FormDataProfile> => {
+  const { data } = await apiService.patch<FormDataProfile>('/lk', formData);
   return data;
 };
 

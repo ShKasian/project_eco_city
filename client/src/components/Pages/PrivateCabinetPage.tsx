@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Container,
   Typography,
@@ -12,109 +12,73 @@ import {
 } from '@mui/material';
 
 import AddIcon from '@mui/icons-material/Add';
-import type { PostInputs, PrivateCabinetFormType } from '../../types/userTypes';
-import { useAppDispatch } from '../../hooks/reduxHooks';
-import { EditPrivateCabinetThunk } from '../../features/redux/thunkActions/userThunkActions';
+import type { PostInputs, PrivateCabinetType } from '../../types/userTypes';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import {
+  getProfileThunk,
+  EditPrivateCabinetThunk,
+} from '../../features/redux/thunkActions/userThunkActions';
 
-// type UserPrivateCabinetPageProps = {
-//   userName: string
-// };
-
-type PrivateCabinetProps = {
-  user: PrivateCabinetFormType;
-};
-
-export default function PrivateCabinetPage({ user }: PrivateCabinetProps): JSX.Element {
+function PrivateCabinetPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((store) => store.user.data);
 
-  const [userProfile, setUserProfile] = useState<PrivateCabinetFormType>({
-    userName: user?.userName || '',
-    img: user?.img || '',
-    email: user?.email || '',
-  });
+  const [file, setFile] = useState<File>();
 
-  const [file, setFile] = useState<PrivateCabinetFormType>();
-
-  const changeHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setUserProfile((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFile(e.target.files[0]);
+    }
   };
 
-  const submitAvatar = useCallback((e: React.FormEvent<HTMLFormElement & PostInputs >): void => {
-    e.preventDefault();
-    console.log(e);
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement & PostInputs>): void => {
+      e.preventDefault();
+      if (!file) {
+        return;
+      }
 
-    const formData = new FormData();
-    formData.append('file', e.currentTarget.file.files[0]);
+      const formData = new FormData();
+      formData.append('file', file);
 
-    formData.append('file', e.currentTarget.file.files[0]);
-    void dispatch(EditPrivateCabinetThunk(formData));
+      void dispatch(EditPrivateCabinetThunk(formData));
+    },
+    [dispatch, file]
+  );
+
+  useEffect(() => {
+    void dispatch(EditPrivateCabinetThunk(user.img));
   }, []);
-
-
-
-
-  const submitAvatar = useCallback( (e: React.FormEvent<HTMLFormElement & PostInputs>):void => {
-    e.preventDefault();
-
-    if(!e.currentTarget.title.value || !e.currentTarget.file.files[0]) {
-        toast({
-            title:'Ошибка',
-            description:'Не все поля заполнены'
-        })
-        return
-    }
-    const formData = new FormData();
-    formData.append('title', e.currentTarget.title.value);
-    formData.append('file', e.currentTarget.file.files[0]);
-    
-    postSubmitService(formData)
-    .then(data => setPosts(prev => [data,...prev]))
-    .catch(err => console.log(err))
-},[])
-
 
   return (
     <Container maxWidth="md">
       <Typography color="greenyellow" mt="55px" variant="h4" align="center" gutterBottom>
         Личный кабинет
       </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-        }}
-      >
-        <Grid container spacing={2}>
+      <Box sx={{ display: 'flex' }}>
+        <Grid container>
           <Button>
             <Avatar
-              //   alt=""
-              src={
-                userProfile.img
-                  ? `http://localhost:3001/img/${userProfile.img}`
-                  : `http://localhost:3001/img/admin.png`
-              }
+              src={`http://localhost:3001/img/${user.img}`}
               sx={{ width: 250, height: 250 }}
             />
           </Button>
-
-          <form onSubmit={submitAvatar}>
-            <Button
-              type="submit"
-              variant="outlined"
-              size="large"
-              // onClick={() => void dispatch(EditPrivateCabinetThunk(userProfile))}
-            >
-              <Input name="img" type="file" />
+          <Grid item xs={12}>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Typography variant="h4" align="center">
+                Имя пользователя: {user.userName}
+              </Typography>
+              <Typography variant="h5" align="center">
+                Email: {user.email}
+              </Typography>
+            </Box>
+          </Grid>
+          <form encType="multipart/form-data" onSubmit={handleSubmit}>
+            <Button type="submit" variant="outlined" size="large">
+              <Input name="file" type="file" onChange={handleFileChange} />
               Send
             </Button>
           </form>
-          <Grid item xs={12}>
-            <Typography color="greenyellow" mt="55px" variant="h4" align="center" gutterBottom>
-              {userProfile.email}dv d
-            </Typography>
-            <Typography color="greenyellow" mt="55px" variant="h4" align="center" gutterBottom>
-              {userProfile.email}
-            </Typography>
-          </Grid>
         </Grid>
       </Box>
       <Box style={{ display: 'flex' }} mt="45px">
@@ -129,3 +93,5 @@ export default function PrivateCabinetPage({ user }: PrivateCabinetProps): JSX.E
     </Container>
   );
 }
+
+export default React.memo(PrivateCabinetPage);
