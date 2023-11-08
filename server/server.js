@@ -11,6 +11,7 @@ const userRouter = require('./routes/userRouter');
 const categoryRouter = require('./routes/categoryRouter');
 const factoryRouter = require('./routes/factoryRouter');
 const PrivateCabinetRouter = require('./routes/PrivateCabinetRouter');
+const ideaRouter = require('./routes/ideaRouter');
 
 
 const app = express();
@@ -44,6 +45,7 @@ app.use('/api/lk', PrivateCabinetRouter);
 app.use('/api/user', userRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/initiative', initiativeRouter);
+app.use('/api/ideas', ideaRouter);
 
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));
