@@ -11,8 +11,7 @@ import PrivateCabinetPage from './components/Pages/PrivateCabinetPage';
 import PrivateRouter from './components/hoks/PrivateRouter';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
 import { checkUserThunk } from './features/redux/thunkActions/userThunkActions';
-// import InitiativeComentsPage from './components/Pages/InitiativeComentsPage';
-
+import InitiativeComentsPage from './components/Pages/InitiativeComentsPage';
 
 export default function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -22,23 +21,22 @@ export default function App(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-const user = useAppSelector((store) => store.user.data);
-
+  const user = useAppSelector((store) => store.user.data);
 
   return (
     <Routes>
       <Route element={<Layout />}>
-      <Route path="/" element={<MainPage />} />
-      <Route element={<PrivateRouter isAllowed={user.status === 'guest'} redirect='/signup' />} /> 
+        <Route path="/" element={<MainPage />} />
+        <Route element={<PrivateRouter isAllowed={user.status === 'guest'} redirect="/signup" />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/lk" element={<PrivateCabinetPage />} />
         <Route path="/reception" element={<ReceptionPointsPage />} />
         <Route path="/initiative" element={<InitiativePage />} />
-      <Route element={<PrivateRouter isAllowed={user.status === 'logged'} redirect='/' />}>
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/signin" element={<SignInPage />} />
-        {/* <Route path="/initiative/:id" element={<InitiativeComentsPage />} /> */}
-      </Route>  
+        <Route element={<PrivateRouter isAllowed={user.status === 'logged'} redirect="/" />}>
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/initiative/:id" element={<InitiativeComentsPage />} />
+        </Route>
       </Route>
     </Routes>
   );

@@ -15,9 +15,6 @@ module.exports = {
       body: {
         type: Sequelize.TEXT
       },
-      img: {
-        type: Sequelize.TEXT
-      },
       userId: {
         type: Sequelize.INTEGER,
         references: {

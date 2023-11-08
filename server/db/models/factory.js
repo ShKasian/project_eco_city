@@ -15,6 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       img: DataTypes.STRING,
+      coordX: DataTypes.FLOAT,
+      coordY: DataTypes.FLOAT,
       categoryId: DataTypes.INTEGER,
     },
     {

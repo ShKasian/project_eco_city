@@ -37,8 +37,6 @@ app.use(
   }),
 );
 
-
-
 app.use('/api/category', categoryRouter);
 app.use('/api/factory', factoryRouter);
 app.use('/api/lk', PrivateCabinetRouter);

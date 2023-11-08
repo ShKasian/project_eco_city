@@ -27,6 +27,7 @@ function NavBar(): JSX.Element {
   //    void dispatch(signinUserThunk())
   //   };
 
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -79,8 +80,13 @@ function NavBar(): JSX.Element {
               <Grid item ml="75px">
                 <Link to="/initiative">Идеи</Link>
               </Grid>
-              <Grid item ml="555px" fontSize="20px">
-                {user.data.status !== 'logged' && <Link to="/signup">Регистрация/Авторизация</Link>}
+
+              <Grid item ml='555px' fontSize='20px'>
+               {user.data.status !=='logged' &&(
+
+                 <Link to="/signup">Регистрация / Вход</Link>
+               )}
+
               </Grid>
             </Grid>
           </Box>

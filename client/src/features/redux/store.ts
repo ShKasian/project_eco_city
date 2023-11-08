@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userSlice from './slices/userSlice';
 import categoryReducer from './slices/categorySlice';
-import factoryReducer from './slices/factorySlice'
-
+import factoryReducer from './slices/factorySlice';
 
 import newsReducer from './slices/newsSlice';
 import initiativeReduser from './slices/initiativeSlice';
@@ -14,7 +13,6 @@ const store = configureStore({
     user: userSlice,
     categoriesData: categoryReducer,
     factoriesData: factoryReducer,
-
   },
 });
 
