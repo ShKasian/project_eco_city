@@ -53,6 +53,9 @@ export default function Footer(): JSX.Element {
             <Link href="https://www.twitter.com/" color="inherit">
               <Twitter sx={{ fontSize: '4rem' }}/>
             </Link>
+            <Grid item xs={12} sm={10} >
+            <Link href="/FAQs" color="inherit"> Часто задаваемые вопросы</Link>
+            </Grid>
           </Grid>
         </Grid>
       </Container>
