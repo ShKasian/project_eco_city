@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Card from '@mui/material/Card';
@@ -7,20 +7,15 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
-import type { CardNewsFormType, CardNewsType } from 'src/types/newsTypes';
+import type { NewsByIdTypeFormType, NewsByIdType } from 'src/types/NewsByIdType';
 
-export type CardNewsPropsType = {
-  news: CardNewsType;
+export type NewsByIdTypePropsType = {
+  news: NewsByIdType;
 };
 
-const MAX_TEXT_LENGTH = 100;
-
-export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
-  const truncatedBody =
-    news.body.length > MAX_TEXT_LENGTH
-      ? `${news.body.substring(0, MAX_TEXT_LENGTH)}...`
-      : news.body;
-
+export default function OneNews({ news }: NewsByIdTypePropsType): JSX.Element {
+  const { id } = useParams();
+  if (!news) return <h1> news dont have</h1>;
   return (
     <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
       <CardActionArea>
@@ -30,7 +25,7 @@ export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
             {news.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {truncatedBody}
+            {news.body}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -39,13 +34,6 @@ export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
           {news.createdAt}
         </Typography>
       </CardActions>
-      <ButtonGroup size="small" aria-label="small button group">
-        <Link to={`/news/${news.id}`}>
-          <Button variant="contained" sx={{ mt: 3, mb: 2, backgroundColor: '#4CAF' }}>
-            Подробнее
-          </Button>
-        </Link>
-      </ButtonGroup>
     </Card>
   );
 }

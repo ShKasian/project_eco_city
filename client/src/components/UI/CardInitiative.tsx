@@ -47,7 +47,9 @@ export default function CardInitiative({
       </CardActions>
       <ButtonGroup size="small" aria-label="small button group">
         <Link to={`/initiative/${oneInitiative.id}`}>
-          <Button>Подробнее</Button>
+          <Button variant="contained" sx={{ mt: 3, mb: 2, backgroundColor: '#4CAF' }}>
+            Подробнее
+          </Button>
         </Link>
       </ButtonGroup>
     </Card>

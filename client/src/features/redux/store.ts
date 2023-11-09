@@ -6,6 +6,7 @@ import oneInitiativeReducer from './slices/oneInitiativeSlice';
 import newsReducer from './slices/newsSlice';
 import initiativeReduser from './slices/initiativeSlice';
 import ideaReducer from './slices/ideaSlice';
+import oneNewsReducer from './slices/newsByIdSlice';
 
 const store = configureStore({
   reducer: {
@@ -16,7 +17,7 @@ const store = configureStore({
     factoriesData: factoryReducer,
     oneInitiative: oneInitiativeReducer,
     ideas: ideaReducer,
-
+    oneNews: oneNewsReducer,
   },
 });
 
