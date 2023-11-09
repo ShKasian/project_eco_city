@@ -1,18 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { UserType } from '../../../types/userTypes';
-import { signinUserThunk, logoutUserThunk, signUpUserThunk, checkUserThunk } from '../thunkActions/userThunkActions';
-
+import type { PrivateCabinetType, UserType } from '../../../types/userTypes';
+import {
+  signinUserThunk,
+  logoutUserThunk,
+  signUpUserThunk,
+  checkUserThunk,
+  EditPrivateCabinetThunk,
+  // getProfileThunk,
+} from '../thunkActions/userThunkActions';
 
 type UserSliceType = {
   data: UserType;
   error: Error | null;
   logoutDialogOpened: boolean;
+  privateCabinet: PrivateCabinetType[];
 };
 
 const initialState: UserSliceType = {
   data: { status: 'loading' },
   error: null,
   logoutDialogOpened: false,
+  privateCabinet: [],
 };
 
 const userSlice = createSlice({
@@ -56,6 +64,13 @@ const userSlice = createSlice({
       state.data = { status: 'guest' };
     });
 
+
+    // EditPrivateCabinetThunk
+    builder.addCase(EditPrivateCabinetThunk.fulfilled, (state, action) => {
+      state.data.img = action.payload.img;
+    });
+    builder.addCase(EditPrivateCabinetThunk.rejected, (state, action) => state);
+
     // logoutUserThunk
     builder.addCase(logoutUserThunk.fulfilled, (state) => {
       state.data = { status: 'guest' };
@@ -63,6 +78,5 @@ const userSlice = createSlice({
     builder.addCase(logoutUserThunk.rejected, (state) => state);
   },
 });
-
 
 export default userSlice.reducer;

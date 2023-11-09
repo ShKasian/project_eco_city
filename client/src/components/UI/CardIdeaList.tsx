@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
 import { Grid } from '@mui/material';
-import { getIdeaThunk } from '../../features/redux/thunkActions/ideaThunkAction'
+import type { CardIdeaType } from 'src/types/ideaTypes';
+import { getIdeaThunk } from '../../features/redux/thunkActions/ideaThunkAction';
 import { useAppSelector, useAppDispatch } from '../../features/redux/hooks';
 import CardIdea from './CardIdea';
 
-
 export default function CardIdeaList(): JSX.Element {
-  const ideas = useAppSelector((store) => store.ideas);
+  const ideas = useAppSelector((store) => store.ideas as CardIdeaType[]); 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     void dispatch(getIdeaThunk());
   }, []);
-  
+
   return (
-    <Grid display="flex" flexWrap="wrap" justify-content="space-between">
+    <Grid container display="flex" justifyContent="center">
       {ideas.map((idea) => (
-        <CardIdea key={idea.id} ideas={idea} />
+        <Grid item key={idea.id}>
+          <CardIdea ideas={idea} />
+        </Grid>
       ))}
     </Grid>
   );

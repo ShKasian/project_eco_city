@@ -31,7 +31,7 @@ export default function App(): JSX.Element {
         <Route path="/FAQs" element={<FAQ />} />
         <Route element={<PrivateRouter isAllowed={user.status === 'guest'} redirect="/signup" />} />
         <Route path="/news" element={<NewsPage />} />
-        <Route path="/lk/:id" element={<PrivateCabinetPage />} />
+        <Route path="/lk" element={<PrivateCabinetPage />} />
         <Route path="/reception" element={<ReceptionPointsPage />} />
         <Route path="/initiative" element={<InitiativePage />} />
         <Route element={<PrivateRouter isAllowed={user.status === 'logged'} redirect="/" />}>
