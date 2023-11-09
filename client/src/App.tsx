@@ -13,6 +13,7 @@ import PrivateRouter from './components/hoks/PrivateRouter';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
 import { checkUserThunk } from './features/redux/thunkActions/userThunkActions';
 import InitiativeComentsPage from './components/Pages/InitiativeComentsPage';
+import FAQ from './components/Pages/FAQ';
 
 export default function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -28,6 +29,7 @@ export default function App(): JSX.Element {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<MainPage />} />
+        <Route path="/FAQs" element={<FAQ />} />
         <Route element={<PrivateRouter isAllowed={user.status === 'guest'} redirect="/signup" />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/news/:id" element={<OneNewsPage />} />

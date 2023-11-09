@@ -16,22 +16,37 @@ export type CardNewsPropsType = {
 const MAX_TEXT_LENGTH = 100;
 
 export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
+
   const truncatedBody =
     news.body.length > MAX_TEXT_LENGTH
       ? `${news.body.substring(0, MAX_TEXT_LENGTH)}...`
       : news.body;
 
+
   return (
-    <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
+    <Card sx={{ margin: '50px 50px 50px 0' }}>
       <CardActionArea>
         <CardMedia sx={{ objectFit: 'cover', height: '250px' }} component="img" image={news.img} />
-        <CardContent>
+        <CardContent
+         sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '700px',
+          maxWidth: '400px',
+          margin: '2rem',
+          justifyContent: 'space-between',
+        }}>
           <Typography gutterBottom variant="h5" component="div">
             {news.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {truncatedBody}
+          {news.body}
           </Typography>
+          <CardMedia
+            sx={{ height: 300 }}
+            component="img"
+            src={`http://localhost:3001/img${news.img}`}
+          />
         </CardContent>
       </CardActionArea>
       <CardActions>
