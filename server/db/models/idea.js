@@ -18,7 +18,7 @@ this.belongsTo(models.User, {foreignKey: 'userId'})
     {
       title: DataTypes.STRING,
       body: DataTypes.TEXT,
-      img: DataTypes.TEXT,
+      img: DataTypes.STRING,
       userId: DataTypes.INTEGER,
     },
     {

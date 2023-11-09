@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
   Factory.init(
     {
       name: DataTypes.STRING,
+      description: DataTypes.STRING,
       img: DataTypes.STRING,
+      coordX: DataTypes.FLOAT,
+      coordY: DataTypes.FLOAT,
       categoryId: DataTypes.INTEGER,
     },
     {

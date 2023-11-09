@@ -12,12 +12,12 @@ module.exports = {
       userName: {
         type: Sequelize.STRING,
       },
-        email: {
-          type: Sequelize.STRING,
+      email: {
+        type: Sequelize.STRING,
           unique: true,
           allowNull: false,
           validate: {
-            isEmail: true,
+          isEmail: true,
           },
         },
       password: {
@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       img: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
