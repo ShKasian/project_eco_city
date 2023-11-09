@@ -1,81 +1,97 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Container,
   Typography,
   Button,
   Grid,
-  TextField,
   Avatar,
   Box,
   Fab,
   Tooltip,
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-  Divider,
+  Input,
 } from '@mui/material';
 
 import AddIcon from '@mui/icons-material/Add';
-import type { UserPrivateCabinetFormType } from '../../types/userTypes';
+import type { PostInputs, PrivateCabinetType } from '../../types/userTypes';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import {
+  getProfileThunk,
+  EditPrivateCabinetThunk,
+} from '../../features/redux/thunkActions/userThunkActions';
 
+function PrivateCabinetPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((store) => store.user.data);
 
-type UserProfile = {
-  userName: UserPrivateCabinetFormType;
+  const [file, setFile] = useState<File>();
 
-  // Другие данные о пользователе
-};
-
-type UserPrivateCabinetPageProps = {
-  userName: string
-};
-
-export default function PrivateCabinetPage(): JSX.Element {
-  const [userProfile, setUserProfile] = React.useState<UserPrivateCabinetPageProps>({
-    userName: '',
-    // Инициализируйте другие данные о пользователе
-  });
-
-  const handleSaveProfile = (): void => {
-    // Здесь можно добавить логику сохранения данных профиля
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFile(e.target.files[0]);
+    }
   };
+
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement & PostInputs>): void => {
+      e.preventDefault();
+      if (!file) {
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      void dispatch(EditPrivateCabinetThunk(formData));
+    },
+    [dispatch, file]
+  );
+
+  useEffect(() => {
+    void dispatch(EditPrivateCabinetThunk(user.img));
+  }, []);
 
   return (
     <Container maxWidth="lg">
       <Typography variant="h4" gutterBottom>
         Личный кабинет
       </Typography>
-
-      <Paper elevation={3} sx={{ padding: '16px', marginBottom: '16px' }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={4}>
-            <Avatar src="url_to_avatar_image.jpg" alt="User Avatar" sx={{ width: '100px', height: '100px' }} />
+      <Box sx={{ display: 'flex' }}>
+        <Grid container>
+          <Button>
+            <Avatar
+              src={`http://localhost:3001/img/${user.img}`}
+              sx={{ width: 250, height: 250 }}
+            />
+          </Button>
+          <Grid item xs={12}>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Typography variant="h4" align="center">
+                Имя пользователя: {user.userName}
+              </Typography>
+              <Typography variant="h5" align="center">
+                Email: {user.email}
+              </Typography>
+            </Box>
           </Grid>
-          <Grid item xs={12} sm={8}>
-            <Typography variant="h6">Имя пользователя</Typography>
-            <Typography variant="subtitle1">user@example.com</Typography>
-          </Grid>
+          <form encType="multipart/form-data" onSubmit={handleSubmit}>
+            <Button type="submit" variant="outlined" size="large">
+              <Input name="file" type="file" onChange={handleFileChange} />
+              Send
+            </Button>
+          </form>
         </Grid>
-      </Paper>
-
-      <Paper elevation={3} sx={{ padding: '16px' }}>
-        <Typography variant="h5" gutterBottom>
-          Мои инициативы
-        </Typography>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Заказ #1" secondary="12 октября 2023" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText primary="Заказ #2" secondary="5 сентября 2023" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText primary="Заказ #3" secondary="30 июля 2023" />
-          </ListItem>
-        </List>
-      </Paper>
+      </Box>
+      <Box style={{ display: 'flex' }} mt="45px">
+        <Button aria-multiline>
+          <Tooltip title="Добавить инициативу" aria-label="add">
+            <Fab color="secondary" aria-label="add">
+              <AddIcon />
+            </Fab>
+          </Tooltip>
+        </Button>
+      </Box>
     </Container>
   )
 }
+
+export default React.memo(PrivateCabinetPage);
