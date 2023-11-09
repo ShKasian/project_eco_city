@@ -1,6 +1,7 @@
 export type CardIdeaType = {
     id: number;
     title: string;
+    img: string;
     body: string;
   };
   

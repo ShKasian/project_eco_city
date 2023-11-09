@@ -9,6 +9,11 @@ import {
   Box,
   Fab,
   Tooltip,
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
 } from '@mui/material';
 
 import AddIcon from '@mui/icons-material/Add';
@@ -36,59 +41,41 @@ export default function PrivateCabinetPage(): JSX.Element {
   };
 
   return (
-    <Container maxWidth="md">
-      <Typography color="greenyellow" mt="55px" variant="h4" align="center" gutterBottom>
+    <Container maxWidth="lg">
+      <Typography variant="h4" gutterBottom>
         Личный кабинет
       </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-        }}
-      >
-        <Grid container spacing={2}>
-          <Button >
-            
-            <Avatar
-              //   alt=""
-              // src={`http://localhost:3001/img/${userProfile.userName}`}
-              sx={{ width: 250, height: 250 }}
-            
-            />
-          </Button>
 
-          <Grid item xs={12}>
-            <TextField
-              margin="normal"
-              fullWidth
-              label="Имя пользователя"
-              variant="outlined"
-              value={userProfile.userName}
-              onChange={(e) => setUserProfile({ ...userProfile, userName: e.target.value })}
-            />
+      <Paper elevation={3} sx={{ padding: '16px', marginBottom: '16px' }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={4}>
+            <Avatar src="url_to_avatar_image.jpg" alt="User Avatar" sx={{ width: '100px', height: '100px' }} />
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <Typography variant="h6">Имя пользователя</Typography>
+            <Typography variant="subtitle1">user@example.com</Typography>
           </Grid>
         </Grid>
-      </Box>
+      </Paper>
 
-
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleSaveProfile}
-        style={{ marginTop: '20px' }}
-      >
-        Сохранить профиль
-      </Button>
-
-      <Box style={{ display: 'flex' }} mt="45px">
-        <Button aria-multiline>
-
-          <Tooltip title="Добавить инициативу" aria-label="add">
-            <Fab color="secondary" aria-label="add">
-              <AddIcon />
-            </Fab>
-          </Tooltip>
-        </Button>
-      </Box>
+      <Paper elevation={3} sx={{ padding: '16px' }}>
+        <Typography variant="h5" gutterBottom>
+          Мои инициативы
+        </Typography>
+        <List>
+          <ListItem button>
+            <ListItemText primary="Заказ #1" secondary="12 октября 2023" />
+          </ListItem>
+          <Divider />
+          <ListItem button>
+            <ListItemText primary="Заказ #2" secondary="5 сентября 2023" />
+          </ListItem>
+          <Divider />
+          <ListItem button>
+            <ListItemText primary="Заказ #3" secondary="30 июля 2023" />
+          </ListItem>
+        </List>
+      </Paper>
     </Container>
-  );
+  )
 }

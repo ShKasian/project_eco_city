@@ -5,22 +5,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
-import type { CardInitiativeType, CardInitiativeFormType } from '../../types/initiativeTypes';
+import type { OneInitiativeType, OneInitiativeFormType } from '../../types/oneInitiativeTypes';
+import type {} from '../../types/initiativeTypes';
 
-export type CardInitiativePropsType = {
-  initiative: CardInitiativeType;
-  maxTextLength?: number;
+export type OneInitiativeTypePropsType = {
+  initiative: OneInitiativeType;
 };
 
-export default function CardInitiative({
-  initiative,
-  maxTextLength = 100,
-}: CardInitiativePropsType): JSX.Element {
-  const truncatedBody =
-    initiative.body.length > maxTextLength
-      ? `${initiative.body.slice(0, maxTextLength)}...`
-      : initiative.body;
-
+export default function CardInitiative({ initiative }: OneInitiativeTypePropsType): JSX.Element {
   return (
     <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
       <CardActionArea>
@@ -34,7 +26,7 @@ export default function CardInitiative({
             {initiative.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {truncatedBody}
+            {initiative.body}
           </Typography>
         </CardContent>
       </CardActionArea>

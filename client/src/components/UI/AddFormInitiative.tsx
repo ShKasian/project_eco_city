@@ -1,9 +1,10 @@
 import { Box, Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import type { CardInitiativeFormType } from 'src/types/initiativeTypes';
+import { addInitiativeThunk } from 'src/features/redux/thunkActions/initiativeThunkActions';
 import { useAppDispatch } from '../../features/redux/hooks';
 
-export default function AddNewsForm(): JSX.Element {
+export default function AddFormInitiative(): JSX.Element {
   const dispatch = useAppDispatch();
   const [inputs, setInputs] = useState<CardInitiativeFormType>({
     img: '',

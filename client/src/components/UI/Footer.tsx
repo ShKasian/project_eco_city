@@ -3,67 +3,61 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import { Facebook, Instagram, Twitter } from '@mui/icons-material';
+import { Facebook, Instagram, LinkedIn, Twitter } from '@mui/icons-material';
 import { Box } from '@mui/material';
 
 export default function Footer(): JSX.Element {
   return (
     <Box
       component="footer"
-      sx={{
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
-        p: 6,
+        sx={{ backgroundColor: '#4CAF',
+        p: 4,
+        color: 'white',
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" color='text.white'>
         <Grid container spacing={5}>
           <Grid item xs={12} sm={4}>
-            <Typography variant="h6" color="text.primary" gutterBottom>
-              About Us
+            <Typography variant="h5" gutterBottom>
+              О проекте EcoGorod
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              We are XYZ company, dedicated to providing the best service to our customers.
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Typography variant="h6" color="text.primary" gutterBottom>
-              Contact Us
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              123 Main Street, Anytown, USA
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Email: info@example.com
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Phone: +1 234 567 8901
+            <Typography fontSize='16px' variant="body2" >
+            Наша компания занимается продвижением эко ориентированных инициатив в России. Присоединяйтесь, вместе мы сохраним природу для будущих поколений!
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Typography variant="h6" color="text.primary" gutterBottom>
-              Follow Us
+            <Typography variant="h5" gutterBottom>
+             Наши контакты
             </Typography>
+            <Typography fontSize='16px' variant="body2">
+            ул. Орджоникидзе, 11, стр. 10, Москва
+            </Typography>
+            <Typography fontSize='16px' variant="body2">
+              EcoGorod@elbrus.com
+             <br/>
+            </Typography>
+            <Typography fontSize='16px'variant="body2">
+             Наш представитель в Москве: 
+             <br/>
+              +7 995 502 79 92 (Артур)
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={4} >
+            <Typography variant="h1" gutterBottom />
             <Link href="https://www.facebook.com/" color="inherit">
-              <Facebook />
+              <Facebook sx={{ fontSize: '4rem' }} />
             </Link>
             <Link href="https://www.instagram.com/" color="inherit" sx={{ pl: 1, pr: 1 }}>
-              <Instagram />
+              <Instagram sx={{ fontSize: '4rem' }}/>
             </Link>
             <Link href="https://www.twitter.com/" color="inherit">
-              <Twitter />
+              <Twitter sx={{ fontSize: '4rem' }}/>
+            </Link>
+            <Link href="https://www.twitter.com/" color="inherit">
+              <LinkedIn sx={{ fontSize: '4rem' }}/>
             </Link>
           </Grid>
         </Grid>
-        <Box mt={5}>
-          <Typography variant="body2" color="text.secondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://your-website.com/">
-              Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}.
-          </Typography>
-        </Box>
       </Container>
     </Box>
   );
