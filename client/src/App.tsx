@@ -8,10 +8,12 @@ import SignInPage from './components/Pages/SignInPage';
 import NewsPage from './components/Pages/NewsPage';
 import InitiativePage from './components/Pages/InitiativePage ';
 import PrivateCabinetPage from './components/Pages/PrivateCabinetPage';
+import OneNewsPage from './components/Pages/OneNewsPage';
 import PrivateRouter from './components/hoks/PrivateRouter';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
 import { checkUserThunk } from './features/redux/thunkActions/userThunkActions';
 import InitiativeComentsPage from './components/Pages/InitiativeComentsPage';
+import FAQ from './components/Pages/FAQ';
 
 export default function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -27,15 +29,17 @@ export default function App(): JSX.Element {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<MainPage />} />
+        <Route path="/FAQs" element={<FAQ />} />
         <Route element={<PrivateRouter isAllowed={user.status === 'guest'} redirect="/signup" />} />
         <Route path="/news" element={<NewsPage />} />
+        <Route path="/news/:id" element={<OneNewsPage />} />
         <Route path="/lk" element={<PrivateCabinetPage />} />
         <Route path="/reception" element={<ReceptionPointsPage />} />
         <Route path="/initiative" element={<InitiativePage />} />
+        <Route path="/initiative/:id" element={<InitiativeComentsPage />} />
         <Route element={<PrivateRouter isAllowed={user.status === 'logged'} redirect="/" />}>
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} />
-          <Route path="/initiative/:id" element={<InitiativeComentsPage />} />
         </Route>
       </Route>
     </Routes>

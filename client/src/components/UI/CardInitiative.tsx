@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -8,18 +10,18 @@ import { CardActionArea, CardActions } from '@mui/material';
 import type { CardInitiativeType, CardInitiativeFormType } from '../../types/initiativeTypes';
 
 export type CardInitiativePropsType = {
-  initiative: CardInitiativeType;
+  oneInitiative: CardInitiativeType;
   maxTextLength?: number;
 };
 
 export default function CardInitiative({
-  initiative,
+  oneInitiative,
   maxTextLength = 100,
 }: CardInitiativePropsType): JSX.Element {
   const truncatedBody =
-    initiative.body.length > maxTextLength
-      ? `${initiative.body.slice(0, maxTextLength)}...`
-      : initiative.body;
+    oneInitiative.body.length > maxTextLength
+      ? `${oneInitiative.body.slice(0, maxTextLength)}...`
+      : oneInitiative.body;
 
   return (
     <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
@@ -27,11 +29,11 @@ export default function CardInitiative({
         <CardMedia
           sx={{ objectFit: 'cover', height: '250px' }}
           component="img"
-          image={initiative.img}
+          image={oneInitiative.img}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {initiative.title}
+            {oneInitiative.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {truncatedBody}
@@ -40,9 +42,18 @@ export default function CardInitiative({
       </CardActionArea>
       <CardActions>
         <Typography variant="body2" color="text.secondary">
+
         {new Date(initiative.createdAt).toLocaleString()}
+
         </Typography>
       </CardActions>
+      <ButtonGroup size="small" aria-label="small button group">
+        <Link to={`/initiative/${oneInitiative.id}`}>
+          <Button variant="contained" sx={{ mt: 3, mb: 2, backgroundColor: '#4CAF' }}>
+            Подробнее
+          </Button>
+        </Link>
+      </ButtonGroup>
     </Card>
   );
 }

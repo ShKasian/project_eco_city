@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,26 +13,40 @@ export type CardNewsPropsType = {
   news: CardNewsType;
 };
 
-const MAX_TEXT_LENGTH = 100; // Максимальная длина текста, после которой он будет обрезан
+const MAX_TEXT_LENGTH = 100;
 
 export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
-  // Обрезаем текст, если его длина больше MAX_TEXT_LENGTH
+
   const truncatedBody =
     news.body.length > MAX_TEXT_LENGTH
       ? `${news.body.substring(0, MAX_TEXT_LENGTH)}...`
       : news.body;
 
+
   return (
-    <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
+    <Card sx={{ margin: '50px 50px 50px 0' }}>
       <CardActionArea>
         <CardMedia sx={{ objectFit: 'cover', height: '250px' }} component="img" image={news.img} />
-        <CardContent>
+        <CardContent
+         sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '700px',
+          maxWidth: '400px',
+          margin: '2rem',
+          justifyContent: 'space-between',
+        }}>
           <Typography gutterBottom variant="h5" component="div">
             {news.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {truncatedBody}
+          {news.body}
           </Typography>
+          <CardMedia
+            sx={{ height: 300 }}
+            component="img"
+            src={`http://localhost:3001/img${news.img}`}
+          />
         </CardContent>
       </CardActionArea>
       <CardActions>
@@ -37,6 +54,13 @@ export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
           {new Date(news.createdAt).toLocaleString()}
         </Typography>
       </CardActions>
+      <ButtonGroup size="small" aria-label="small button group">
+        <Link to={`/news/${news.id}`}>
+          <Button variant="contained" sx={{ mt: 3, mb: 2, backgroundColor: '#4CAF' }}>
+            Подробнее
+          </Button>
+        </Link>
+      </ButtonGroup>
     </Card>
   );
 }

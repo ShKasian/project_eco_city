@@ -7,12 +7,12 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const newsRouter = require('./routes/newsRouter');
 const initiativeRouter = require('./routes/initiativeRouter');
+// const oneInitiativeRouter = require('./routes/oneInitiativeRouter');
 const userRouter = require('./routes/userRouter');
 const categoryRouter = require('./routes/categoryRouter');
 const factoryRouter = require('./routes/factoryRouter');
 const PrivateCabinetRouter = require('./routes/PrivateCabinetRouter');
 const ideaRouter = require('./routes/ideaRouter');
-
 
 
 const app = express();
@@ -44,6 +44,7 @@ app.use('/api/lk', PrivateCabinetRouter);
 app.use('/api/user', userRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/initiative', initiativeRouter);
+// app.use('api/initiative/:id', oneInitiativeRouter);
 app.use('/api/ideas', ideaRouter);
 
 

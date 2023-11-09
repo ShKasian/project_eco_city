@@ -4,12 +4,20 @@ import {
   updateInitiative,
   getInitiative,
   addInitiative,
+  submitInitiative,
+  getOneInitiativeById,
+
 } from '../../../services/initiativeService';
 import type { CardInitiativeFormType, CardInitiativeType } from '../../../types/initiativeTypes';
 
 export const getInitiativeThunk = createAsyncThunk<CardInitiativeType[]>(
   'initiative/getInitiativeThunk',
   async () => getInitiative(),
+);
+
+export const getOneInitiativeByIdThunk = createAsyncThunk<CardInitiativeType, number>(
+  'initiative/getOneInitiativeByIdThunk',
+  async (initiativeId) => getOneInitiativeById(initiativeId),
 );
 
 export const addInitiativeThunk = createAsyncThunk<CardInitiativeType, CardInitiativeFormType>(

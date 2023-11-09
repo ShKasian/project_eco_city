@@ -6,9 +6,11 @@ import {
 } from '../../../services/initiativeByIdService';
 import type { OneInitiativeFormType, OneInitiativeType } from '../../../types/oneInitiativeTypes';
 
-export const getOneInitiativeByIdThunk = createAsyncThunk<OneInitiativeType, number>(
-  'initiative/getOneInitiativeByIdThunk',
-  async (initiativeId) => getOneInitiativeById(initiativeId),
+export const getOneInitiativeByIdThunk = createAsyncThunk<
+  OneInitiativeType,
+  OneInitiativeType['id']
+>('initiative/getOneInitiativeByIdThunk', async (initiativeId: OneInitiativeType['id']) =>
+  getOneInitiativeById(initiativeId),
 );
 
 export const addOneInitiativeThunk = createAsyncThunk<OneInitiativeType, number>(
