@@ -40,7 +40,7 @@ export default function CardInitiative({
       </CardActionArea>
       <CardActions>
         <Typography variant="body2" color="text.secondary">
-          {initiative.createdAt}
+        {new Date(initiative.createdAt).toLocaleString()}
         </Typography>
       </CardActions>
     </Card>

@@ -11,7 +11,7 @@ export default function CardInitiativeList(): JSX.Element {
   useEffect(() => {
     void dispatch(getInitiativeThunk());
   }, []);
-  console.log(initiative);
+  // console.log(initiative);
   return (
     <Box display="flex" flexWrap="wrap">
       {initiative.map((initiatives) => (
