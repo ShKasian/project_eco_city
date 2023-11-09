@@ -30,11 +30,6 @@ export const signinUserThunk = createAsyncThunk<UserModelType, UserSigninFormTyp
   (formData) => submitSigninService(formData),
 );
 
-// export const getProfileThunk = createAsyncThunk<PrivateCabinetType, { formData: PrivateCabinetType }>(
-//   '/lk',
-//   async (formData) => GetPrivateCabinetService(formData),
-// );
-
 export const EditPrivateCabinetThunk = createAsyncThunk<{img: string}, FormDataProfile>(
   '/lk',
   async (formData)=> EditPrivateCabinetService(formData),

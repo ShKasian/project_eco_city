@@ -13,6 +13,8 @@ const categoryRouter = require('./routes/categoryRouter');
 const factoryRouter = require('./routes/factoryRouter');
 const PrivateCabinetRouter = require('./routes/PrivateCabinetRouter');
 const ideaRouter = require('./routes/ideaRouter');
+const commentInitiativeRouter = require('./routes/commentInitiativeRouter');
+
 
 
 const app = express();
@@ -44,6 +46,8 @@ app.use('/api/lk', PrivateCabinetRouter);
 app.use('/api/user', userRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/initiative', initiativeRouter);
+app.use('/api/comments', commentInitiativeRouter);
+
 // app.use('api/initiative/:id', oneInitiativeRouter);
 app.use('/api/ideas', ideaRouter);
 
