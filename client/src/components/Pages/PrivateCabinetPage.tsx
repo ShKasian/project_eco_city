@@ -15,7 +15,6 @@ import AddIcon from '@mui/icons-material/Add';
 import type { PostInputs, PrivateCabinetType } from '../../types/userTypes';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import {
-  getProfileThunk,
   EditPrivateCabinetThunk,
 } from '../../features/redux/thunkActions/userThunkActions';
 
