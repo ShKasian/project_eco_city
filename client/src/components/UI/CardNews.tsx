@@ -13,14 +13,15 @@ export type CardNewsPropsType = {
   news: CardNewsType;
 };
 
-const MAX_TEXT_LENGTH = 100; // Максимальная длина текста, после которой он будет обрезан
+const MAX_TEXT_LENGTH = 100;
 
 export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
-  // Обрезаем текст, если его длина больше MAX_TEXT_LENGTH
-  // const truncatedBody =
-  //   news.body.length > MAX_TEXT_LENGTH
-  //     ? `${news.body.substring(0, MAX_TEXT_LENGTH)}...`
-  //     : news.body;
+
+  const truncatedBody =
+    news.body.length > MAX_TEXT_LENGTH
+      ? `${news.body.substring(0, MAX_TEXT_LENGTH)}...`
+      : news.body;
+
 
   return (
     <Card sx={{ margin: '50px 50px 50px 0' }}>
@@ -50,12 +51,14 @@ export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
       </CardActionArea>
       <CardActions>
         <Typography variant="body2" color="text.secondary">
-          {news.createdAt}
+          {new Date(news.createdAt).toLocaleString()}
         </Typography>
       </CardActions>
       <ButtonGroup size="small" aria-label="small button group">
         <Link to={`/news/${news.id}`}>
-          <Button>Подробнее</Button>
+          <Button variant="contained" sx={{ mt: 3, mb: 2, backgroundColor: '#4CAF' }}>
+            Подробнее
+          </Button>
         </Link>
       </ButtonGroup>
     </Card>
