@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
+
 import type { OneInitiativeType, OneInitiativeFormType } from '../../types/oneInitiativeTypes';
 import type {} from '../../types/initiativeTypes';
 
@@ -13,6 +14,8 @@ export type OneInitiativeTypePropsType = {
 };
 
 export default function CardInitiative({ initiative }: OneInitiativeTypePropsType): JSX.Element {
+  const { id } = useParams();
+  if (!initiative) return <h1> initiative dont have</h1>;
   return (
     <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
       <CardActionArea>
