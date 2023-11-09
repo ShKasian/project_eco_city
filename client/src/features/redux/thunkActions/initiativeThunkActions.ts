@@ -3,8 +3,10 @@ import {
   deleteInitiative as deleteInitiativeService,
   updateInitiative,
   getInitiative,
+  addInitiative,
   submitInitiative,
   getOneInitiativeById,
+
 } from '../../../services/initiativeService';
 import type { CardInitiativeFormType, CardInitiativeType } from '../../../types/initiativeTypes';
 
@@ -20,7 +22,7 @@ export const getOneInitiativeByIdThunk = createAsyncThunk<CardInitiativeType, nu
 
 export const addInitiativeThunk = createAsyncThunk<CardInitiativeType, CardInitiativeFormType>(
   'initiative/addInitiativeThunk',
-  async (formData) => submitInitiative(formData),
+  async (formData) => addInitiative(formData),
 );
 
 export const updateInitiativeThunk = createAsyncThunk<

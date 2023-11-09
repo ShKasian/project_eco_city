@@ -7,6 +7,7 @@ import newsReducer from './slices/newsSlice';
 import initiativeReduser from './slices/initiativeSlice';
 import ideaReducer from './slices/ideaSlice';
 import commentReducer from './slices/commentSlice';
+import oneNewsReducer from './slices/newsByIdSlice';
 
 
 const store = configureStore({
@@ -19,7 +20,7 @@ const store = configureStore({
     oneInitiative: oneInitiativeReducer,
     ideas: ideaReducer,
     comment: commentReducer,
-
+    oneNews: oneNewsReducer,
   },
 });
 

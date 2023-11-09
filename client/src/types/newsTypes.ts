@@ -3,7 +3,7 @@ export type CardNewsType = {
   img: string;
   title: string;
   body: string;
-  createdAt: string;
+  createdAt: Date;
 };
 
 export type CardNewsFormType = Omit<CardNewsType, 'id'>;
