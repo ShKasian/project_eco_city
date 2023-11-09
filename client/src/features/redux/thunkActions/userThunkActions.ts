@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import {
   EditPrivateCabinetService,
-  GetPrivateCabinetService,
+  // GetPrivateCabinetService,
   checkUserService,
   logoutUserService,
   submitSigninService,
@@ -30,14 +30,14 @@ export const signinUserThunk = createAsyncThunk<UserModelType, UserSigninFormTyp
   (formData) => submitSigninService(formData),
 );
 
-export const getProfileThunk = createAsyncThunk<PrivateCabinetType, { formData: PrivateCabinetType }>(
-  '/lk',
-  async (formData) => GetPrivateCabinetService(formData),
-);
+// export const getProfileThunk = createAsyncThunk<PrivateCabinetType, { formData: PrivateCabinetType }>(
+//   '/lk',
+//   async (formData) => GetPrivateCabinetService(formData),
+// );
 
-export const EditPrivateCabinetThunk = createAsyncThunk<FormDataProfile, {formData: PrivateCabinetType}>(
+export const EditPrivateCabinetThunk = createAsyncThunk<{img: string}, FormDataProfile>(
   '/lk',
-  async (formData): Promise<FormDataProfile> => EditPrivateCabinetService(formData),
+  async (formData)=> EditPrivateCabinetService(formData),
 );
 
 export const logoutUserThunk = createAsyncThunk<boolean>('/user/logout', async () =>

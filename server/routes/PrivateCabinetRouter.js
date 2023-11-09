@@ -7,18 +7,18 @@ const { log } = require('console');
 
 const PrivateCabinetRouter = express.Router();
 
-PrivateCabinetRouter.get('/', async (req, res) => {
+// PrivateCabinetRouter.get('/', async (req, res) => {
 
-  try {
-    const { id } = req.session.user;
+//   try {
+//     const { id } = req.session.user;
 
-    const userPrivateCabinetRouter = await User.findOne({ where: { id: id } });
-    res.status(200).json(userPrivateCabinetRouter);
-  } catch (error) {
-    console.log(error);
-    return res.sendStatus(500);
-  }
-});
+//     const userPrivateCabinetRouter = await User.findOne({ where: { id: id } });
+//     res.status(200).json(userPrivateCabinetRouter);
+//   } catch (error) {
+//     console.log(error);
+//     return res.sendStatus(500);
+//   }
+// });
 
 PrivateCabinetRouter.patch('/', upload.single('file'), async (req, res) => {
   try {
@@ -34,7 +34,7 @@ PrivateCabinetRouter.patch('/', upload.single('file'), async (req, res) => {
     req.session.user.img = name;
     await req.session.save();
     await checkUser.save();
-    res.status(200).json(checkUser);
+    res.status(200).json({img:name});
   } catch (error) {
     console.error('Ошибка:', error);
   }

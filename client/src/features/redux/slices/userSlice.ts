@@ -6,7 +6,7 @@ import {
   signUpUserThunk,
   checkUserThunk,
   EditPrivateCabinetThunk,
-  getProfileThunk,
+  // getProfileThunk,
 } from '../thunkActions/userThunkActions';
 
 type UserSliceType = {
@@ -67,8 +67,7 @@ const userSlice = createSlice({
 
     // EditPrivateCabinetThunk
     builder.addCase(EditPrivateCabinetThunk.fulfilled, (state, action) => {
-      const index = state.privateCabinet.findIndex((el) => el.id === action.payload.id);
-      state.privateCabinet[index] = action.payload;
+      state.data.img = action.payload.img;
     });
     builder.addCase(EditPrivateCabinetThunk.rejected, (state, action) => state);
 
