@@ -15,7 +15,7 @@ export const getOneInitiativeById = async (initiativeId: number): Promise<OneIni
   return data;
 };
 
-export const submitInitiative = async (
+export const addInitiative = async (
   formData: CardInitiativeFormType,
 ): Promise<CardInitiativeType> => {
   const { data } = await apiService.post<CardInitiativeType>('/initiative', formData);

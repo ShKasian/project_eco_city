@@ -42,7 +42,9 @@ export default function CardInitiative({
       </CardActionArea>
       <CardActions>
         <Typography variant="body2" color="text.secondary">
-          {oneInitiative.createdAt}
+
+        {new Date(initiative.createdAt).toLocaleString()}
+
         </Typography>
       </CardActions>
       <ButtonGroup size="small" aria-label="small button group">

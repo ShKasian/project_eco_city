@@ -51,7 +51,7 @@ export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
       </CardActionArea>
       <CardActions>
         <Typography variant="body2" color="text.secondary">
-          {news.createdAt}
+          {new Date(news.createdAt).toLocaleString()}
         </Typography>
       </CardActions>
       <ButtonGroup size="small" aria-label="small button group">

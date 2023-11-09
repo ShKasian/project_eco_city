@@ -12,9 +12,20 @@ router
   })
 
   .post(async (req, res) => {
-    const newInitiative = await Initiative.create(req.body);
-    res.json(newInitiative);
+    // console.log('123453432');
+    try {
+      const { title, body, img } = req.body;
+      const initiativ = await Initiative.create({
+        title,
+        body,
+        img,
+      });
+      res.status(201).json(initiativ);
+    } catch ({ message }) {
+      res.json({ message });
+    }
   });
+
 
 router
   .route('/:id')
