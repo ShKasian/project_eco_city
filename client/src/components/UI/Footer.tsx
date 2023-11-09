@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import { Facebook, Instagram, Twitter } from '@mui/icons-material';
+import { Facebook, Instagram, LinkedIn, Twitter } from '@mui/icons-material';
 import { Box } from '@mui/material';
 
 export default function Footer(): JSX.Element {
@@ -52,6 +52,9 @@ export default function Footer(): JSX.Element {
             </Link>
             <Link href="https://www.twitter.com/" color="inherit">
               <Twitter sx={{ fontSize: '4rem' }}/>
+            </Link>
+            <Link href="https://www.twitter.com/" color="inherit">
+              <LinkedIn sx={{ fontSize: '4rem' }}/>
             </Link>
           </Grid>
         </Grid>

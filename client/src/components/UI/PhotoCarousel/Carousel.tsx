@@ -1,12 +1,12 @@
 import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-// import { Grid } from '@mui/material';
 import style from './style.module.css';
 
 function PhotoCarousel(): JSX.Element {
   return (
     <Carousel showArrows showThumbs={false}>
+
       <div
         className={style.wrapper}
         style={{ width: '100%', height: '450px', position: 'relative' }}

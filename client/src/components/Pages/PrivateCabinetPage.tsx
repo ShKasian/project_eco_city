@@ -51,8 +51,8 @@ function PrivateCabinetPage(): JSX.Element {
   }, []);
 
   return (
-    <Container maxWidth="md">
-      <Typography color="greenyellow" mt="55px" variant="h4" align="center" gutterBottom>
+    <Container maxWidth="lg">
+      <Typography variant="h4" gutterBottom>
         Личный кабинет
       </Typography>
       <Box sx={{ display: 'flex' }}>
@@ -91,7 +91,7 @@ function PrivateCabinetPage(): JSX.Element {
         </Button>
       </Box>
     </Container>
-  );
+  )
 }
 
 export default React.memo(PrivateCabinetPage);

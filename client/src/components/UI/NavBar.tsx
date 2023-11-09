@@ -61,25 +61,26 @@ function NavBar(): JSX.Element {
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
+
             <Grid container fontSize='22px'>
               <Grid item ml='50px'>
                 <Link to="/news">Новости</Link>
               </Grid>
-              <Grid item ml='70px'>
+              <Grid item ml="70px">
                 <Link to="/reception">Пункты переработки</Link>
               </Grid>
-              <Grid item ml='70px'>
+              <Grid item ml="70px">
                 <Link to="/initiative">Инициативы</Link>
               </Grid>
-              <Grid item ml='400px' fontSize='22px'>
-               {user.data.status !=='logged' &&(
-                 <Link to="/signup"> Регистрация</Link>
-               )}
+              <Grid item ml="400px" fontSize="22px">
+                {user.data.status !== 'logged' && <Link to="/signup"> Регистрация</Link>}
               </Grid>
+
               <Grid item ml='80px' fontSize='22px'>
                {user.data.status !=='logged' &&(
                 <Link to="/signin"> Войти</Link>
                )}
+
 
               </Grid>
             </Grid>
@@ -110,6 +111,7 @@ function NavBar(): JSX.Element {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem onClick={handleCloseUserMenu}>
+
                   <Link to="/lk">Личный кабинет</Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
