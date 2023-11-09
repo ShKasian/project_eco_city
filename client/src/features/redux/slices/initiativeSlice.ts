@@ -5,6 +5,7 @@ import {
   updateInitiativeThunk,
   deleteInitiativeThunk,
   getInitiativeThunk,
+  getOneInitiativeByIdThunk,
 } from '../thunkActions/initiativeThunkActions';
 
 type NewsState = CardInitiativeType[];

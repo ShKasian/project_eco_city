@@ -1,8 +1,17 @@
 import type { CardInitiativeFormType, CardInitiativeType } from '../types/initiativeTypes';
+import type { OneInitiativeType, OneInitiativeFormType } from '../types/oneInitiativeTypes';
 import apiService from './apiService';
 
 export const getInitiative = async (): Promise<CardInitiativeType[]> => {
   const { data } = await apiService<CardInitiativeType[]>('/initiative');
+  console.log(data);
+  return data;
+};
+
+export const getOneInitiativeById = async (initiativeId: number): Promise<OneInitiativeType> => {
+  const { data } = await apiService.get<OneInitiativeType>(`/initiative/${initiativeId}`);
+  console.log(data);
+
   return data;
 };
 

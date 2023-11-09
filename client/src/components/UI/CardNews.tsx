@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -37,6 +40,11 @@ export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
           {news.createdAt}
         </Typography>
       </CardActions>
+      <ButtonGroup size="small" aria-label="small button group">
+        <Link to={`/news/${news.id}`}>
+          <Button>Подробнее</Button>
+        </Link>
+      </ButtonGroup>
     </Card>
   );
 }

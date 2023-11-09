@@ -6,7 +6,7 @@ const router = express.Router();
 router
   .route('/')
   .get(async (req, res) => {
-    const initiatives = await Initiative.findAll({ include: CommentInitiative });
+    const initiatives = await Initiative.findAll();
     console.log(JSON.stringify(initiatives, null, 2));
     res.json(initiatives);
   })
@@ -23,6 +23,17 @@ router
 
 router
   .route('/:id')
+  .get(async (req, res) => {
+    console.log(req.params);
+    const { id } = req.params;
+    const initiatives = await Initiative.findByPk(id, {
+      include: {
+        model: CommentInitiative,
+      },
+    });
+    console.log(initiatives);
+    res.json(initiatives);
+  })
   .delete(async (req, res) => {
     try {
       await Initiative.destroy({ where: { id: req.params.id } });

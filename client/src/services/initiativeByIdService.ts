@@ -2,7 +2,7 @@ import type { OneInitiativeType, OneInitiativeFormType } from '../types/oneIniti
 import apiService from './apiService';
 
 export const getOneInitiativeById = async (initiativeId: number): Promise<OneInitiativeType> => {
-  const { data } = await apiService.get<OneInitiativeType>(`/initiative/get-one/${initiativeId}`);
+  const { data } = await apiService.get<OneInitiativeType>(`/initiative/${initiativeId}`);
   return data;
 };
 
