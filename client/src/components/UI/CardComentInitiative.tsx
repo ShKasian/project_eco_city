@@ -1,48 +1,36 @@
-/* eslint-disable import/newline-after-import */
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Avatar, Box, Button, CardActionArea, CardActions } from '@mui/material';
-import type {
-  ComentInitiativeTypesFormType,
-  ComentInitiativeTypes,
-} from 'src/types/comentInitiativeTypes';
+import { Avatar, Box, Button, CardActionArea, CardActions, Grid } from '@mui/material';
+import type { CommentInitiativeTypes } from '../../types/comentInitiativeTypes';
+import { useAppSelector } from '../../features/redux/hooks';
+// import AddFormComment from './AddFormComment';e
 
 export type CardComentPropsType = {
-  comentInitiative: ComentInitiativeTypes;
+  oneComment: CommentInitiativeTypes;
 };
 
-export default function CardComentInitiative({
-  comentInitiative,
+export default function CardCommentInitiative({
+  oneComment,
 }: CardComentPropsType): JSX.Element {
+  const user = useAppSelector((store) => store.user.data);
+
   return (
-    <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
+    <Card sx={{ minWidth: 275 }} style={{ marginTop: '10px' }}>
       <CardContent>
         <Avatar
-          //   alt=""
-          // src={`http://localhost:3001/img/${userProfile.userName}`}
-          sx={{ width: 20, height: 20 }}
+          src={`http://localhost:3001/img/${user.img}`}
+          sx={{ width: 30, height: 30 }}
         />
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
+        <Typography gutterBottom fontSize='25px' component="div">
+          {oneComment?.User?.userName}
         </Typography>
-
-        <Typography variant="h5" component="div">
-          ovv
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
+        <Typography gutterBottom fontSize='12px' component="div">
+          {oneComment?.body}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   );
 }

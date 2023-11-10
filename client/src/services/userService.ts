@@ -22,11 +22,6 @@ export const submitSigninService = async (formData: UserSigninFormType): Promise
   return data;
 };
 
-// export const GetPrivateCabinetService = async (formData: FormDataProfile): Promise<PrivateCabinetType> => {
-//   const { data } = await apiService.get<PrivateCabinetType>('/lk', formData);
-//   return data;
-// };
-
 export const EditPrivateCabinetService = async (formData: FormDataProfile,): Promise<{img:string}> => {
   const { data } = await apiService.patch<{img: string}>('/lk', formData);
   return data;

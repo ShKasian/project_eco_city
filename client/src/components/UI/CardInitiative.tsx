@@ -43,6 +43,7 @@ export default function CardInitiative({
       <CardActions>
         <Typography variant="body2" color="text.secondary">
           {new Date(oneInitiative.createdAt).toLocaleString()}
+
         </Typography>
       </CardActions>
       <ButtonGroup size="small" aria-label="small button group">

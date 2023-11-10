@@ -7,19 +7,6 @@ const { log } = require('console');
 
 const PrivateCabinetRouter = express.Router();
 
-// PrivateCabinetRouter.get('/', async (req, res) => {
-
-//   try {
-//     const { id } = req.session.user;
-
-//     const userPrivateCabinetRouter = await User.findOne({ where: { id: id } });
-//     res.status(200).json(userPrivateCabinetRouter);
-//   } catch (error) {
-//     console.log(error);
-//     return res.sendStatus(500);
-//   }
-// });
-
 PrivateCabinetRouter.patch('/', upload.single('file'), async (req, res) => {
   try {
     const { id } = req.session.user;
