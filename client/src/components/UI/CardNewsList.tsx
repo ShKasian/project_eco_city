@@ -12,7 +12,7 @@ export default function CardNewsList(): JSX.Element {
     void dispatch(getNewsThunk());
   }, []);
   return (
-    <Grid container margin="auto" justifyContent="center" rowGap={4} columnGap={4}>
+    <Grid container margin="50px auto" justifyContent="center" rowGap={4} columnGap={4}>
       {news.map((newss) => (
         <Grid item xs={5}>
           <CardNews key={newss.id} news={newss} />

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Card } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import { getInitiativeThunk } from '../../features/redux/thunkActions/initiativeThunkActions';
 import { useAppSelector, useAppDispatch } from '../../features/redux/hooks';
@@ -14,10 +14,12 @@ export default function CardInitiativeList(): JSX.Element {
   }, []);
   // console.log(initiative);
   return (
-    <Box display="flex" flexWrap="wrap">
+    <Grid container margin="50px auto" wrap="wrap" justifyContent="center" rowGap={4} columnGap={4}>
       {initiative.map((el) => (
-        <CardInitiative key={el.id} oneInitiative={el} />
+        <Grid item xs={4}>
+          <CardInitiative key={el.id} oneInitiative={el} />
+        </Grid>
       ))}
-    </Box>
+    </Grid>
   );
 }

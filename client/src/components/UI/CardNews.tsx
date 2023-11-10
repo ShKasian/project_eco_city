@@ -22,44 +22,6 @@ export default function CardNews({ news }: CardNewsPropsType): JSX.Element {
       : news.body;
 
   return (
-    // <Card sx={{ margin: '50px 50px 50px 0' }}>
-    //   <CardActionArea>
-    //     <CardMedia
-    //       sx={{ objectFit: 'contain', height: '250px' }}
-    //       component="img"
-    //       image={news.img}
-    //     />
-    //     <CardContent
-    //       sx={{
-    //         display: 'flex',
-    //         flexDirection: 'column',
-    //         maxHeight: '600px',
-    //         maxWidth: '400px',
-    //         margin: '2rem',
-    //         padding: 4,
-    //       }}
-    //     >
-    // <Typography gutterBottom variant="h5" component="div">
-    //   {news.title}
-    // </Typography>
-    // <Typography variant="body2" color="text.secondary">
-    //   {news.body}
-    // </Typography>
-    //     </CardContent>
-    //   </CardActionArea>
-    //   <CardActions>
-    //     <Typography variant="body2" color="text.secondary">
-    //       {new Date(news.createdAt).toLocaleString()}
-    //     </Typography>
-    //   </CardActions>
-    //   <ButtonGroup size="small" aria-label="small button group">
-    //     <Link to={`/news/${news.id}`}>
-    //       <Button variant="contained" sx={{ mt: 3, mb: 2, backgroundColor: '#4CAF' }}>
-    //         Подробнее
-    //       </Button>
-    //     </Link>
-    //   </ButtonGroup>
-    // </Card>
     <Paper>
       <Grid
         container

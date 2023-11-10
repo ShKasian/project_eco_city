@@ -85,7 +85,7 @@ function PrivateCabinetPage(): JSX.Element {
 
   return (
     <Container maxWidth="lg">
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" marginTop={3} gutterBottom>
         Личный кабинет
       </Typography>
       <>
@@ -101,18 +101,6 @@ function PrivateCabinetPage(): JSX.Element {
             <Grid item xs={12} sm={8}>
               <Typography variant="h4">Имя пользователя: {user.userName}</Typography>
               <Typography variant="h5">Почта: {user.email}</Typography>
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              {/* <form encType="multipart/form-data" onSubmit={handleSubmit}>
-                <Button type="submit" variant="outlined" size="large">
-                  <Input name="file" type="file" onChange={handleFileChange} />
-                  Send
-                </Button>
-              </form> */}
               <form
                 encType="multipart/form-data"
                 onSubmit={handleSubmit}
@@ -121,6 +109,7 @@ function PrivateCabinetPage(): JSX.Element {
                 <label
                   htmlFor="file"
                   style={{
+                    marginTop: '50px',
                     marginBottom: '10px',
                     display: 'block',
                     cursor: 'pointer',
@@ -160,94 +149,98 @@ function PrivateCabinetPage(): JSX.Element {
                 </Button>
               </form>
             </Grid>
-            <Grid item xs={12} sm={8}>
-              <Box display="flex" justifyContent="flex-end" gap={20}>
-                <Button
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2, backgroundColor: '#4CAF' }}
-                  onClick={handleOpen}
-                >
-                  Добавить инициативу
-                </Button>
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      width: 400,
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      backgroundColor: 'white',
-                      boxShadow: 24,
-                      p: 4,
-                    }}
+            <Grid item xs={12}>
+              <Grid container justifyContent="end" columnGap={4}>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    sx={{ height: '50px', backgroundColor: '#4CAF' }}
+                    onClick={handleOpen}
                   >
-                    <Grid className="container" justifyContent="center">
-                      <Grid item xs={10}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                          Добавить инициативу
-                        </Typography>
-                      </Grid>
-                      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <FormControl
-                          sx={{
-                            width: '-webkit-fill-available',
-                          }}
-                        >
-                          <TextField
-                            label="Название инициативы"
-                            variant="outlined"
-                            fullWidth
-                            name="title"
-                            value={inputs.title}
-                            onChange={changeHandler}
-                          />
-                          <TextField
-                            label="Описание"
-                            variant="outlined"
-                            name="body"
-                            fullWidth
-                            multiline
-                            rows={7}
-                            value={inputs.body}
-                            onChange={changeHandler}
-                          />
-                          <TextField
-                            label="Картинки"
-                            variant="outlined"
-                            name="img"
-                            fullWidth
-                            multiline
-                            rows={7}
-                            value={inputs.img}
-                            onChange={changeHandler}
-                          />
-                          <Button
-                            type="submit"
-                            variant="contained"
-                            sx={{ mt: 2, backgroundColor: '#4CAF', color: 'white' }}
-                            onClick={() => {
-                              dispatch(addInitiativeThunk(inputs))
-                                .then(() => handleClose())
-                                .catch(console.log);
-                            }}
-                          >
-                            Отправить
-                          </Button>
-                        </FormControl>
+                    Добавить инициативу
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="contained" sx={{ height: '50px', backgroundColor: '#4CAF' }}>
+                    Добавить идею
+                  </Button>
+                </Grid>
+              </Grid>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    width: 400,
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    backgroundColor: 'white',
+                    boxShadow: 24,
+                    p: 4,
+                  }}
+                >
+                  <Grid className="container" justifyContent="center">
+                    <Grid item xs={10}>
+                      <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Добавить инициативу
                       </Typography>
                     </Grid>
-                  </Box>
-                </Modal>
-                <Button variant="contained" sx={{ mt: 3, mb: 2, backgroundColor: '#4CAF' }}>
-                  Добавить идею
-                </Button>
-              </Box>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                      <FormControl
+                        sx={{
+                          width: '-webkit-fill-available',
+                        }}
+                      >
+                        <TextField
+                          label="Название инициативы"
+                          variant="outlined"
+                          fullWidth
+                          name="title"
+                          value={inputs.title}
+                          onChange={changeHandler}
+                        />
+                        <TextField
+                          label="Описание"
+                          variant="outlined"
+                          name="body"
+                          fullWidth
+                          multiline
+                          rows={7}
+                          value={inputs.body}
+                          onChange={changeHandler}
+                        />
+                        <TextField
+                          label="Картинки"
+                          variant="outlined"
+                          name="img"
+                          fullWidth
+                          multiline
+                          rows={7}
+                          value={inputs.img}
+                          onChange={changeHandler}
+                        />
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          sx={{ mt: 2, backgroundColor: '#4CAF', color: 'white' }}
+                          onClick={() => {
+                            dispatch(addInitiativeThunk(inputs))
+                              .then(() => handleClose())
+                              .catch(console.log);
+                          }}
+                        >
+                          Отправить
+                        </Button>
+                      </FormControl>
+                    </Typography>
+                  </Grid>
+                </Box>
+              </Modal>
             </Grid>
           </Grid>
         </Paper>

@@ -16,21 +16,23 @@ export type CardComentPropsType = {
 export default function CardCommentInitiative({ oneComment }: CardComentPropsType): JSX.Element {
   const user = useAppSelector((store) => store.user.data);
   console.log(oneComment.id, '555555555555555555555555555555555555555');
-  
+
   const dispatch = useAppDispatch();
   // const commentDel = useAppSelector((state) => state.comment);
 
   return (
-    <Card sx={{ minWidth: 275 }} style={{ marginTop: '10px' }}>
-      <CardContent>
+    <Card sx={{ minWidth: 275, width: '100%' }} style={{ marginTop: '10px' }}>
+      <CardContent sx={{ width: '100%' }}>
         <Avatar src={`http://localhost:3001/img/${user.img}`} sx={{ width: 30, height: 30 }} />
         <Typography gutterBottom fontSize="25px" component="div">
           {oneComment?.User?.userName}
         </Typography>
-        <Typography gutterBottom fontSize="12px" component="div">
+        <Typography gutterBottom fontSize="16px" component="div">
           {oneComment?.body}
         </Typography>
-        <Button onClick={() => void dispatch(deleteCommentThunk({id:oneComment.id}))}>Удалить</Button>
+        <Button onClick={() => void dispatch(deleteCommentThunk({ id: oneComment.id }))}>
+          Удалить
+        </Button>
       </CardContent>
     </Card>
   );
