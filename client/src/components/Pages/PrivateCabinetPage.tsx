@@ -70,6 +70,7 @@ function PrivateCabinetPage(): JSX.Element {
       const formData = new FormData();
       formData.append('file', file);
 
+
       void dispatch(EditPrivateCabinetThunk(formData));
     },
     [dispatch, file],
@@ -79,6 +80,7 @@ function PrivateCabinetPage(): JSX.Element {
     void dispatch(EditPrivateCabinetThunk(user.img));
   }, []);
 
+  
   const [open, setOpen] = React.useState(false);
   const handleOpen = (): void => setOpen(true);
   const handleClose = () => setOpen(false);
