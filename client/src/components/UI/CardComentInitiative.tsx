@@ -15,6 +15,8 @@ export type CardComentPropsType = {
 
 export default function CardCommentInitiative({ oneComment }: CardComentPropsType): JSX.Element {
   const user = useAppSelector((store) => store.user.data);
+  console.log(oneComment.id, '555555555555555555555555555555555555555');
+  
   const dispatch = useAppDispatch();
   // const commentDel = useAppSelector((state) => state.comment);
 
@@ -28,7 +30,7 @@ export default function CardCommentInitiative({ oneComment }: CardComentPropsTyp
         <Typography gutterBottom fontSize="12px" component="div">
           {oneComment?.body}
         </Typography>
-        <Button onClick={() => void dispatch(deleteCommentThunk(oneComment.id))}>Удалить</Button>
+        <Button onClick={() => void dispatch(deleteCommentThunk({id:oneComment.id}))}>Удалить</Button>
       </CardContent>
     </Card>
   );
