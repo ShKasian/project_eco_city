@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../features/redux/hooks';
 import type { OneInitiativeFormType, OneInitiativeType } from '../../types/oneInitiativeTypes';
 import OneInitiative from '../UI/OneInitiative';
@@ -25,14 +25,23 @@ export default function InitiativeComentsPage(): JSX.Element {
 
   return (
     <>
-      {initiative && <OneInitiative initiative={initiative} />} {isAdmin && <AddFormInitiative />}
+      {/* {initiative && <OneInitiative initiative={initiative} />} {isAdmin && <AddFormInitiative />} */}
       {/* <Typography variant="body2" color="text.secondary">
         {initiative?.CommentInitiatives[0]?.body}
       </Typography> */}
       {/* <CardCommentInitiative /> */}
-      <CardCommentList />
-      <AddFormComment />
-      
+      <Grid container xs={12} flexDirection="column" margin={5}>
+        <Grid item>
+          {initiative && <OneInitiative initiative={initiative} />}{' '}
+          {isAdmin && <AddFormInitiative />}
+        </Grid>
+        <Grid item>
+          <CardCommentList />
+        </Grid>
+        <Grid item>
+          <AddFormComment />
+        </Grid>
+      </Grid>
     </>
   );
 }

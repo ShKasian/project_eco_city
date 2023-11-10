@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Card } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import { useParams } from 'react-router-dom';
 import { getCommentsThunk } from '../../features/redux/thunkActions/commentThunkAction';
@@ -11,16 +11,18 @@ export default function CardCommentList(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const { id } = useParams();
-console.log(comment);
+  console.log(comment);
 
   useEffect(() => {
     void dispatch(getCommentsThunk(Number(id)));
   }, []);
   return (
-    <Box display="flex" flexWrap="wrap">
+    <Grid container xs={12} flexDirection="column" rowGap={3} marginTop={4}>
       {comment.map((el) => (
-        <CardCommentInitiative key={el.id} oneComment={el} />
+        <Grid item xs={4.5}>
+          <CardCommentInitiative key={el.id} oneComment={el} />
+        </Grid>
       ))}
-    </Box>
+    </Grid>
   );
 }

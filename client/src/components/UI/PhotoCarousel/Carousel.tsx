@@ -6,7 +6,6 @@ import style from './style.module.css';
 function PhotoCarousel(): JSX.Element {
   return (
     <Carousel showArrows showThumbs={false}>
-
       <div
         className={style.wrapper}
         style={{ width: '100%', height: '450px', position: 'relative' }}
@@ -14,7 +13,14 @@ function PhotoCarousel(): JSX.Element {
         <img src="http://localhost:3001/img/EcoGorod.jpeg" alt="Фото 2" />
         <div
           className={style.innerText}
-          style={{ position: 'absolute', top: 85, left: 280, color: '#5F6075', padding: '10px' }}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            color: '#5F6075',
+            padding: '10px',
+          }}
         >
           EcoGorod - здесь природа и люди в гармонии
         </div>
