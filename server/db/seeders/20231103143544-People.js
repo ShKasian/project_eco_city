@@ -45,7 +45,7 @@ module.exports = {
       ],
       {},
     );
-  
+
     await queryInterface.bulkInsert(
       'Initiatives',
       [
@@ -101,21 +101,6 @@ module.exports = {
         {
           id: 6,
           name: 'ЭЛЕКТРОНИКА',
-        },
-      ],
-
-      {},
-    );
-
-    await queryInterface.bulkInsert(
-      'CommentInitiatives',
-      [
-        {
-          id: 1,
-          name: 'Администратор',
-          body: 'Идея топ, админ лучший, Шаварш красавчик',
-          userId: 1,
-          initiativeId: 1,
         },
       ],
 

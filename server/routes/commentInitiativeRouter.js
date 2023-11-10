@@ -1,12 +1,12 @@
-const express = require("express");
-const { CommentInitiative, User } = require("../db/models");
+const express = require('express');
+const { CommentInitiative, User } = require('../db/models');
 
 const router = express.Router();
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(async (req, res) => {
-    console.log('------------------');
+    // console.log('------------------');
     const notes = await CommentInitiative.findAll({
       include: User,
       where: { initiativeId: req.params.id },
@@ -15,8 +15,10 @@ router
   })
   // исправить
   .delete(async (req, res) => {
+    console.log(req.params, 'sbhdtnuebthv');
+    const { id } = req.params;
     try {
-      await CommentInitiative.destroy({ where: { id: req.params.id } });
+      await CommentInitiative.destroy({ where: { id } });
       res.sendStatus(200);
     } catch (err) {
       console.error(err);

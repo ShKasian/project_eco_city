@@ -18,11 +18,11 @@ factoryRouter.route('/').get(async (req, res) => {
 factoryRouter.route('/filter/:value').get(async (req, res) => {
   try {
     const { value } = req.params;
-    console.log(value);
+    // console.log(value);
     const data = await Factory.findAll({
       where: { categoryId: value },
     });
-    console.log(data);
+    // console.log(data);
     res.status(200).json(data);
   } catch (error) {
     console.error(error);
