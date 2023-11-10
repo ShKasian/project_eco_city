@@ -21,8 +21,10 @@ router
         img,
       });
       res.status(201).json(initiativ);
-    } catch ({ message }) {
-      res.json({ message });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json(err);
+
     }
   });
 
