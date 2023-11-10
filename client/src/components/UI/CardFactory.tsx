@@ -11,7 +11,7 @@ export type FactoryPropsTypes = {
 };
 
 const style = {
-  position: 'absolute' ,
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -24,10 +24,21 @@ const style = {
 
 function CardFactory({ factory }: FactoryPropsTypes): JSX.Element {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = (): void  => setOpen(true);
-  const handleClose = (): void  => setOpen(false);
+  const handleOpen = (): void => setOpen(true);
+  const handleClose = (): void => setOpen(false);
   return (
-    <Card sx={{ maxWidth: 340, margin: '1rem' }}>
+    <Card
+      sx={{
+        maxWidth: 340,
+        height: 500,
+        margin: '1rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        padding: 1,
+      }}
+    >
       <CardMedia
         sx={{ height: 190 }}
         component="img"
@@ -41,8 +52,8 @@ function CardFactory({ factory }: FactoryPropsTypes): JSX.Element {
           {factory.description}
         </Typography>
       </CardContent>
-      <CardActions >
-        <Button onClick={handleOpen} >График работы</Button>
+      <CardActions>
+        <Button onClick={handleOpen}>График работы</Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -54,19 +65,19 @@ function CardFactory({ factory }: FactoryPropsTypes): JSX.Element {
               График работы
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-             Понедельник: 09:00 - 18:00
-             <br/>
-             Вторник: 09:00 - 18:00
-             <br/>
-             Среда: 09:00 - 18:00
-             <br/>
-             Четверг: 09:00 - 18:00
-             <br/>
-             Пятница: 09:00 - 18:00
-             <br/>
-             Суббота: выходной
-             <br/>
-             Воскресенье: выходной
+              Понедельник: 09:00 - 18:00
+              <br />
+              Вторник: 09:00 - 18:00
+              <br />
+              Среда: 09:00 - 18:00
+              <br />
+              Четверг: 09:00 - 18:00
+              <br />
+              Пятница: 09:00 - 18:00
+              <br />
+              Суббота: выходной
+              <br />
+              Воскресенье: выходной
             </Typography>
           </Box>
         </Modal>

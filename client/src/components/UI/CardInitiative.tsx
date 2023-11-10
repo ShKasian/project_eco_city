@@ -19,10 +19,10 @@ export default function CardInitiative({
   maxTextLength = 100,
 }: CardInitiativePropsType): JSX.Element {
   const truncatedBody =
-    oneInitiative.body.length > maxTextLength
+    oneInitiative.body?.length > maxTextLength
       ? `${oneInitiative.body.slice(0, maxTextLength)}...`
       : oneInitiative.body;
-
+ 
   return (
     <Card sx={{ maxHeight: 'auto', maxWidth: 600 }}>
       <CardActionArea>
@@ -42,8 +42,7 @@ export default function CardInitiative({
       </CardActionArea>
       <CardActions>
         <Typography variant="body2" color="text.secondary">
-
-        {/* {new Date(initiative.createdAt).toLocaleString()} */}
+          {new Date(oneInitiative.createdAt).toLocaleString()}
 
         </Typography>
       </CardActions>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { getNewsThunk } from '../../features/redux/thunkActions/newsThunkActions';
 import { useAppSelector, useAppDispatch } from '../../features/redux/hooks';
 import CardNews from './CardNews';
@@ -12,10 +12,12 @@ export default function CardNewsList(): JSX.Element {
     void dispatch(getNewsThunk());
   }, []);
   return (
-    <Box display="flex" flexWrap="wrap">
+    <Grid container margin="auto" justifyContent="center" rowGap={4} columnGap={4}>
       {news.map((newss) => (
-        <CardNews key={newss.id} news={newss} />
+        <Grid item xs={5}>
+          <CardNews key={newss.id} news={newss} />
+        </Grid>
       ))}
-    </Box>
+    </Grid>
   );
 }
