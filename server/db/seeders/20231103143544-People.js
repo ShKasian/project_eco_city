@@ -39,7 +39,7 @@ module.exports = {
       ],
       {},
     );
-  
+
     await queryInterface.bulkInsert(
       'Initiatives',
       [
@@ -92,19 +92,6 @@ module.exports = {
       {},
     );
 
-    await queryInterface.bulkInsert(
-      'CommentInitiatives',
-      [
-        {
-          name: 'Администратор',
-          body: 'Идея топ, админ лучший, Шаварш красавчик',
-          userId: 1,
-          initiativeId: 1,
-        },
-      ],
-
-      {},
-    );
   },
 
   async down(queryInterface, Sequelize) {

@@ -32,14 +32,14 @@ router
 router
   .route('/:id')
   .get(async (req, res) => {
-    console.log(req.params);
+    // console.log(req.params);
     const { id } = req.params;
     const initiatives = await Initiative.findByPk(id, {
       include: {
         model: CommentInitiative,
       },
     });
-    console.log(initiatives);
+    // console.log(initiatives);
     res.json(initiatives);
   })
   .delete(async (req, res) => {

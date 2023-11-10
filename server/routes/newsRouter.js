@@ -18,10 +18,10 @@ router
 router
   .route('/:id')
   .get(async (req, res) => {
-    console.log(req.params);
+    // console.log(req.params);
     const { id } = req.params;
     const news = await News.findByPk(id);
-    console.log(news);
+    // console.log(news);
     res.json(news);
   })
   .delete(async (req, res) => {
